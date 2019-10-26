@@ -144,33 +144,29 @@ require "../../require/config.php";
           </div>
 
           <div class="form-group">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <select class="form-control" id="gender" type="radio" name="gender" required>
                 <option selected="selected" value="0">-- Select Gender --</option>
-                <option value="1">Male(M)</option>
-                <option value="2">Female(F)</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
                 <option value="3">Other</option>
               </select>
+            </div>
+            <div class="col-sm-6">
+              <input class="form-control" id="contact" placeholder="Contact No" type="tel" name="contact" required>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="email">Email ID</label>
-            <div class="col-sm-4">
-              <input class="form-control" id="email" type="email" name="email" required>
-            </div>
-            <label class="col-sm-2 control-label" for="contact">Mobile no</label>
-            <div class="col-sm-4">
-              <input class="form-control" id="contact" type="tel" name="contact" required>
-            </div>
+
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="password">Create Password</label>
-            <div class="col-sm-4">
+            <label class="col-sm-3 control-label" for="password">Create Password</label>
+            <div class="col-sm-6">
               <input class="form-control" id="password" type="password" name="password" required>
             </div>
-            <label class="col-sm-2 control-label" for="confirm_password">Confirm Password</label>
-            <div class="col-sm-4">
+            <label class="col-sm-3 control-label" for="confirm_password">Confirm Password</label>
+            <div class="col-sm-3">
               <input class="form-control" id="confirm_password" type="password" name="confirm_password" required>
             </div>
           </div>
