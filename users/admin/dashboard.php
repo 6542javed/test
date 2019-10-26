@@ -183,9 +183,8 @@ require "../../require/config.php";
         </div>
       </div>
       <div id="Update_member" class="tab-pane fade in">
-        Update existing library member
         <div class="col-md-offset-2 col-md- 8">
-
+            Update existing library member
         </div>
       </div>
       <div id="rem_member" class="tab-pane fade in">
