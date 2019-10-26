@@ -144,7 +144,6 @@ require "../../require/config.php";
           </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="gender">Gender</label>
             <div class="col-sm-4">
               <select class="form-control" id="gender" type="radio" name="gender" required>
                 <option selected="selected" value="0">-- Select Gender --</option>
