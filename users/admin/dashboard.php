@@ -134,13 +134,16 @@ Digital Library of kaliabor College
     <form id="section" class="form-horizontal" action="" method="post">
       <center><h3 style="background: orange; color:white; padding: 10px 5px;" id="label"> &nbsp; Member Registration</h3></center>
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Full Name</label>
-        <div class="col-sm-10">
-          <input class="form-control" id="name" type="text" name="name" required>
-        </div>
+          <div class="col-sm-4">
+              <input class="form-control" id="fname" placeholder="First name" type="text" name="fname" required>
+          </div>
+          <div class="col-sm-4">
+              <input class="form-control" id="mname" placeholder="Middle name" type="text" name="mname" >
+          </div>
+          <div class="col-sm-4">
+              <input class="form-control" id="lname" placeholder="Last name" type="text" name="lname" required>
+          </div>
       </div>
-
-
 
       <div class="form-group">
         <label class="col-sm-2 control-label" for="gender">Gender</label>
@@ -184,7 +187,7 @@ Digital Library of kaliabor College
       <div id="Update_member" class="tab-pane fade in">
         Update existing library member
         <div class="col-md-offset-2 col-md- 8">
-          
+
         </div>
       </div>
       <div id="rem_member" class="tab-pane fade in">
