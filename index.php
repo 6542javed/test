@@ -23,7 +23,7 @@ require "require/config.php";
 <img src="images/logo.JPG" alt="KC logo" width="100px"></img>
   </div>
   <div class="brand">
-Digital Library of KC
+Digital Library of Kalibor College
   </div>
 </div>
 <!-- The navbar - The <a> elements are used to jump to a section in the scrollable area -->
