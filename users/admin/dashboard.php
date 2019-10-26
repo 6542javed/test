@@ -162,7 +162,7 @@ require "../../require/config.php";
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="password">Create Password</label>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
               <input class="form-control" id="password" type="password" name="password" required>
             </div>
             <label class="col-sm-3 control-label" for="confirm_password">Confirm Password</label>
