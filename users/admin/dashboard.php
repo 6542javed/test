@@ -14,6 +14,7 @@ require "../../require/config.php";
   <script src="../../bootstrap/js/jquery.min.js"></script>
   <script src="../../bootstrap/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../../styles/style.css">
+  <link rel="stylesheet" href="../../styles/dashboard.css">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
@@ -23,7 +24,7 @@ require "../../require/config.php";
       <img src="../../images/logo.JPG" alt="KC logo" width="100px"></img>
     </div>
     <div class="brand">
-      Digital Library of kaliabor College
+      Digital Library of Kaliabor College
     </div>
   </div>
   <div class="containerdiv">
@@ -36,17 +37,13 @@ require "../../require/config.php";
         <li class="nav-item">
           <a class="nav-link active" href="#logout" data-toggle="modal">Log Out</a>
         </li>
-
         <h3 id="menu_category">Library</h3>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#add_member" data-toggle="tab">Add new member</a>
+        <a class="nav-link" href="#add_member" data-toggle="tab">Add member</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#Update_member" data-toggle="tab">Update member</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#rem_member" data-toggle="tab">Remove member</a>
+        <a class="nav-link" href="#Update_rem_member" data-toggle="tab">Update/Remove member</a>
       </li>
       <h3 id="menu_category">Upload</h3>
       <li class="nav-item">
@@ -65,8 +62,13 @@ require "../../require/config.php";
 </div>
 <div class="content">
   <div class="tab-content">
+    <div class="nav-button">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
     <div id="update_pass" class="tab-pane fade in">
-      <div class="col-md-offset-2 col-md-8"  >
+      <div class="dashboard">
         <?php
         $admin_id = $_SESSION['user'];
         if(isset($_POST['old']) && isset($_POST['new']) && isset($_POST['confirm']))
@@ -100,91 +102,103 @@ require "../../require/config.php";
         }
 
         ?>
-        <form class="form-horizontal" role="form" action="" method="post">
-          <div><center><h3 id="label">Update Admin Password</h3></center></div>
-          <div class="form-group">
-            <label for="old" class="col-md-4 control-label">Enter Current Password</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="old" name="old" placeholder="Current Password" required>
+          <form class="form-horizontal" action="" method="post">
+            <h3>Update Admin Password</h3>
+            <div class="group">
+                <input type="password" id="old" name="old" autocomplete="off" required>
+                <label class="label-name" for="old"><span class="content-name">Current Password</span>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="new" class="col-md-4 control-label">Enter New Password</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="new" name="new" placeholder="New Password">
+            <div class="group">
+                <input type="password" id="new" name="new" autocomplete="off" required>
+                <label class="label-name" for="new"><span class="content-name">New Password</span>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="confirm" class="col-md-4 control-label">Confirm New Password</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="confirm" name="confirm" placeholder="Confirm New Password">
+            <div class="group">
+                <input type="password" id="confirm" name="confirm" autocomplete="off" required>
+                <label class="label-name" for="confirm"><span class="content-name">Confirm new Password</span>
             </div>
-          </div>
-          <div class="col-md-12">
-            <button style="width:20%;" type="submit" class="btn btn-primary center-block">Update</button>
-          </div><br/><br/>
-        </form>
-      </div>
+            <div class="button">
+              <button type="submit" class="submit-button">Update</button>
+            </div>
+          </form>
+        </div>
     </div>
     <div id="add_member" class="tab-pane fade in">
-      <div class="col-md-offset-2 col-md-8"  >
+      <div class="dashboard">
         <!-- register website -->
-        <form id="section" class="form-horizontal" action="" method="post">
-          <center><h3 style="background: orange; color:white; padding: 10px 5px;" id="label"> &nbsp; Member Registration</h3></center>
-          <div class="form-group">
-            <div class="col-sm-4">
-              <input class="form-control" id="fname" placeholder="First name" type="text" name="fname" required>
-            </div>
-            <div class="col-sm-4">
-              <input class="form-control" id="mname" placeholder="Middle name" type="text" name="mname" >
-            </div>
-            <div class="col-sm-4">
-              <input class="form-control" id="lname" placeholder="Last name" type="text" name="lname" required>
-            </div>
+        <form class="form-horizontal" action="" method="post">
+          <h3>Library Member Registration</h3>
+          <div class="group">
+              <input id="fname" type="text" name="fname" autocomplete="off" required>
+              <label class="label-name" for="new"><span class="content-name">First name</span>
           </div>
-
-          <div class="form-group">
-            <div class="col-sm-6">
-              <select class="form-control" id="gender" type="radio" name="gender" required>
-                <option selected="selected" value="0">-- Select Gender --</option>
-                <option value="1">Male</option>
-                <option value="2">Female</option>
-                <option value="3">Other</option>
-              </select>
-            </div>
-            <div class="col-sm-6">
-              <input class="form-control" id="contact" placeholder="Contact No" type="tel" name="contact" required>
-            </div>
+          <div class="group">
+              <input id="lname" type="text" name="lname" autocomplete="off" required>
+              <label class="label-name" for="new"><span class="content-name">Last name</span>
           </div>
-
-          <div class="form-group">
-
+          <div class="group">
+              <input id="contact" type="tel" name="contact" autocomplete="off" required>
+              <label class="label-name" for="new"><span class="content-name">Contact No.</span>
           </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" for="password">Create Password</label>
-            <div class="col-sm-3">
-              <input class="form-control" id="password" type="password" name="password" required>
-            </div>
-            <label class="col-sm-3 control-label" for="confirm_password">Confirm Password</label>
-            <div class="col-sm-3">
-              <input class="form-control" id="confirm_password" type="password" name="confirm_password" required>
-            </div>
+          <div class="group">
+              <input type="text" name="address" autocomplete="off" required>
+              <label class="label-name" for="new"><span class="content-name">Address</span>
           </div>
-          <div class="form-group">
-            <div class=" col-md-12">
-              <center><button class="btn btn-primary "  type="submit" name="register">Register</button></center>
-            </div></div>
+          <div class="group">
+              <input id="password" type="password" name="password" autocomplete="off" required>
+              <label class="label-name" for="new"><span class="content-name">Create Password</span>
+          </div>
+          <div class="group">
+              <input id="confirm_password" type="password" name="confirm_password" autocomplete="off" required>
+              <label class="label-name" for="new"><span class="content-name">Confirm Password</span>
+          </div>
+          <div class="button">
+              <button class="submit-button" type="submit" name="register">Register</button>
+            </div>
           </form>
         </div>
       </div>
-      <div id="Update_member" class="tab-pane fade in">
-        <div class="col-md-offset-2 col-md- 8">
-            Update existing library member
-        </div>
-      </div>
-      <div id="rem_member" class="tab-pane fade in">
-        <div class="col-md-offset-2 col-md- 8">
-            Remove existing library member
+      <div id="Update_rem_member" class="tab-pane fade in">
+        <div class="dashboard">
+            <h3>Update/Remove existing Member</h3>
+            <?php
+  $query="select id, first_name, last_name, address, contact_no, username from account ";
+    if($connect->query($query))
+    {
+      $result=$connect->query($query);
+      $rows=mysqli_num_rows($result);
+      if($rows!=0){
+        echo '
+        <div class="table-responsive">
+          <table id="table" class="table table-hover ">
+            <thead style="background:#282828; color:white;">
+              <th>Id</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </thead>
+        ';
+          while($rows=mysqli_fetch_row($result))
+          {
+            echo '<tr><td>'.$rows[0].'</td><td>'.$rows[1].' '.$rows[2].'</td><td>'.$rows[3].'</td><td>'.$rows[4].'</td><td>'.$rows[5].'</td><td>'.
+            '<form action="" method="POST"><button class="btn btn-default" type="submit" name="update" value="'.$rows[0].'"><font color="blue"><span class="glyphicon glyphicon-edit"></span></font></button></form>'
+            .'</td><td>'.
+              '<form action="" method="POST"><button class="btn btn-default" type="submit" name="delete" value="'.$rows[0].'"><font color="red"><span class="glyphicon glyphicon-remove"></span></font></button></form>
+            </td></tr>';
+          }
+        echo '</table></div><br/>';
+      }
+      else
+      {
+      echo "<h3 align='center' style='color:white'>No Staff Member</h3>";
+    }}
+    else{
+      echo "Error: " .$query. "<br>" . $connect->error;
+    }
+  $connect->close();
+?>
         </div>
       </div>
       <div id="Up_doc" class="tab-pane fade in">
@@ -198,8 +212,36 @@ require "../../require/config.php";
         </div>
       </div>
       <div id="Up_video" class="tab-pane fade in">
-        <div class="col-md-offset-2 col-md- 8">
-            Upload video lecture
+        <div class="dashboard">
+              <form class="form-horizontal" method="POST" action="uploading.php" enctype="multipart/form-data">
+                <h3>Upload video lecture</h3>
+                <div class="group">
+                  <input type="text" id="topic" name="topic" autocomplete="off" required>
+                  <label  class="label-name" for="topic"><span class="content-name">Topic</span></label>
+                </div>
+                <div class="group">
+                  <input type="text" id="subject" name="subject" autocomplete="off" required>
+                  <label class="label-name" for="subject"><span class="content-name">Subject</span></label>
+                </div>
+                <div class="group">
+                  <input type="text" id="speaker" name="speaker" autocomplete="off" required>
+                  <label class="label-name" for="speaker"><span class="content-name">Speaker</span></label>
+                </div>
+                <div class="group">
+                  <input type="text" id="Course" name="course" autocomplete="off" required>
+                  <label class="label-name" for="Course"><span class="content-name">Course</span></label>
+                </div>
+                <div class="group">
+                  <input type="text" id="Semester" name="semester" autocomplete="off" required>
+                  <label class="label-name" for="Semester"><span class="content-name">Semester</span></label>
+                </div>
+                <div class="file">
+                  <input class="file" type="file" id="file" name="file" required>
+                </div>
+                <div class="button">
+                  <button type="submit" class="submit-button" name="media" value="">Upload</button>
+                </div>
+              </form>
         </div>
       </div>
     </div>
@@ -208,7 +250,7 @@ require "../../require/config.php";
     <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class=" modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
-          <div style="background: red;" class="modal-header">
+          <div id="logoutstyle" class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
@@ -217,15 +259,14 @@ require "../../require/config.php";
             </h4>
           </div>
           <div class="modal-body">
-            <h3>Are you sure?</h3>
+            <h4>Do you really want to logout?</h4>
           </div>
           <div class="modal-footer"><form action="../../require/logout.php" method="post">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+            <button type="button" class="btn btn-default" data-dismiss="modal">No
             </button>
-            <button type="submit" name="logout" class="btn btn-warning">
+            <button id="logoutstyle" type="submit" name="logout" class="btn btn-default">
               Yes
             </button>
-
           </form>
         </div>
       </div><!-- /.modal-content -->
@@ -241,5 +282,6 @@ require "../../require/config.php";
 
 </div>
 </div>
+<script src="../../styles/javascript.js"></script>
 </body>
 </html>

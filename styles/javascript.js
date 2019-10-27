@@ -13,4 +13,13 @@ $(document).ready(function(){
     }
   }
 
+  const navSlide = () => {
+    const nav-button = document.querySelector('.nav-button');
+    const menu = document.querySelector('.menu');
+    // const nav = document.querySelector('.');
+    nav-button.addEventListener('click', () =>{
+      menu.classList.toggle('nav-active');
+    });
+  }
+navSlide();
 })
