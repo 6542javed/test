@@ -13,13 +13,27 @@ $(document).ready(function(){
     }
   }
 
-  const navSlide = () => {
-    const nav-button = document.querySelector('.nav-button');
-    const menu = document.querySelector('.menu');
-    // const nav = document.querySelector('.');
-    nav-button.addEventListener('click', () =>{
-      menu.classList.toggle('nav-active');
-    });
-  }
-navSlide();
+
 })
+
+// dashboard nav show or hide
+const navSlide = () => {
+  const button = document.querySelector('.nav-button');
+  const menu = document.querySelector('.menu');
+  const links = document.querySelectorAll('.nav-link');
+
+  button.addEventListener('click',() => {
+    menu.classList.toggle('nav-active');
+    });
+
+  for(var i=0; links.length; i++){
+  var self = links[i];
+  self.addEventListener('click', () => {
+    if(window.innerWidth < 768 ){
+      menu.classList.toggle('nav-active');
+    }
+  })
+  }
+
+}
+navSlide();

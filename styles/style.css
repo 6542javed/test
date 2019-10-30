@@ -14,7 +14,7 @@ h1{
   font-size:30px;
   padding: 0 15px;
   display:flex;
-  font-family: cursive;
+  font-family: serif;
   color: rgb(231, 223, 47);
 }
 .logo{
@@ -50,6 +50,25 @@ h1{
 #body{
 background-image: url("../images/slide1.jpeg");
 background-size: cover;
+}
+.view-pdf-button{
+  background-color: navy;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  color:white;
+  font-size: 0.8em;
+  transition: all 0.3s ease;
+}
+.view-pdf-button:hover{
+  background-color: darkblue;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0px 3px 10px rgb(0, 0, 0.25);
+}
+.view-pdf-button:active{
+  text-decoration: none;
 }
 
 #ebooks, #collegePubs, #localPubs, #audioLectures, #videoLectures, #questionPapers, #uploadFiles, #aboutUs{

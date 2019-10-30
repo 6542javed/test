@@ -1,3 +1,3 @@
 <?php
-$connect = new mysqli("localhost","root","","media");
+$connect = new mysqli("localhost","root","","digital_library");
 ?>

@@ -2,6 +2,13 @@
 h3{
   text-transform: uppercase;
 }
+#header{
+   z-index: 1;
+   position: fixed;
+   top: 0px;
+   left: 0px;
+   right: 0px;
+}
 .containerdiv{
 display: flex;
 flex-direction: row;
@@ -9,12 +16,15 @@ margin-top: 100px;
 }
 .menu{
 flex: 1;
-width:20vw;
+width:20%;
 min-height: calc(100vh - 100px);
 background: rgb(98, 41, 236);
 }
 .content{
-width: 80vw;
+width: 80%;
+/* background-image: linear-gradient(to right,pink, turquoise); */
+background-image: linear-gradient(to right, turquoise ,#2c3e50);
+
 }
 .nav{
   padding-top: 0px;
@@ -34,6 +44,9 @@ width: 80vw;
 .nav-item a:focus{
   color: black;
 }
+.member_option{
+  cursor:pointer;
+}
 .dashboard{
   min-height: calc(100vh - 100px);
   display: flex;
@@ -41,9 +54,10 @@ width: 80vw;
   align-items: center;
   flex-direction: column;
   font-family: sans-serif;
-  background-image: linear-gradient(to right,pink, turquoise);
 }
+
 .form-horizontal{
+  min-width: 40vw;
   padding: 30px 50px;
   background: white;
   box-shadow: 0px 3px 10px rgb(0, 0, 0.25);
@@ -58,10 +72,10 @@ width: 80vw;
   background: transparent;
   width: 100%;
   height: 100%;
-  padding-top: 20px;
+  padding-top: 15px;
   border: none;
   outline: none;
-  font-size: 20px;
+  font-size: 18px;
 }
 .dashboard label{
   text-decoration-style: none;
@@ -146,15 +160,26 @@ width: 80vw;
     overflow-x: hidden;
     left:0;
     right:0;
+    z-index:1;
     transform: translateX(-100%);
+    transition: all 0.3s ease;
+  }
+  .content{
+    width: 100%;
   }
   .dashboard{
     width:100vw;
   }
   .nav-button{
     display:block;
+    z-index:1;
+  }
+  .modal{
+    margin: auto auto;
+    width: 70vw;
   }
 }
 .nav-active{
+  width: 100%;
   transform: translateX(0%);
 }
