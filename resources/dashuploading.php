@@ -5,7 +5,6 @@ $pdfdirectory="../media/pdf/";
 $file = $_FILES['file'];
 $directorythumb="../media/pdf/thumbs/";
 $extension=".pdf";
-$filesize = ((int)$file['size']/1024)/1024;
 
 // Check If the file already exists in the server(in the pdf folder)
 if(isset($_POST['category']) && isset($_POST['title_book']) && isset($_POST['author']) && isset($_FILES['file']))
@@ -15,7 +14,7 @@ if(isset($_POST['category']) && isset($_POST['title_book']) && isset($_POST['aut
   $title_book=$_POST['title_book'];
   $author=$_POST['author'];
   $file=$_FILES['file']; //OUTPUT: Array
-  $original_filename = $file['name'];//OUTPUT: maths2.pdf
+  $original_filename = $file['name']; //OUTPUT: maths2.pdf
   //$file_type_full = explode('/',$file['type']);//OUTPUT: 1=>application, 2=>pdf
 
   //explode lol
@@ -43,8 +42,8 @@ if(isset($_POST['category']) && isset($_POST['title_book']) && isset($_POST['aut
   //extract type(if application or not)
   if(file_exists($pdfdirectory.$filename_saved_as)){
     echo "File already exists";
-  }elseif(move_uploaded_file($file['tmp_name'], $pdfdirectory.$filename_saved_as)){
-    $insert = "insert into document(type,name,author,saved_as,thumbname) values('$category','$title_book','$author','$filename_saved_as','$filename_without_extension')";
+  }else if(move_uploaded_file($file['tmp_name'], $pdfdirectory.$filename_saved_as)){
+    $insert = "insert into document(type, name, author, saved_as, thumbname) values('$category','$title_book','$author','$filename_saved_as','$filename_without_extension')";
     if($connect->query($insert)){
       echo '<br>file Uploaded succesfully<br>';
       echo '<a href="../users/admin/dashboard.php"><button type="button" class="btn btn-default">Go Back</button></a>';

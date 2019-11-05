@@ -84,18 +84,20 @@ require "../../require/config.php";
     <div id="home" class="tab-pane active fade in">
       <div class="dashboard">
         <h3>homepage of the admin dashboard</h3>
-        <div class="box">
+		<div class="box">
+        <div class="box1">
           Ebooks
         </div>
-        <div class="box">
+        <div class="box2">
           College Magazines
         </div>
-        <div class="box">
+        <div class="box3">
           Audios
         </div>
-        <div class="box">
+        <div class="box4">
           videos
         </div>
+		</div>
       </div>
     </div>
     <div id="reset_pass" class="tab-pane fade in">
@@ -330,8 +332,14 @@ require "../../require/config.php";
 
       <div id="media" class="tab-pane fade in">
         <div class="dashboard">
-              <form class="form-horizontal" method="POST" action="uploading.php" enctype="multipart/form-data">
+              <form class="form-horizontal" method="POST" action="../../resources/uploading.php" enctype="multipart/form-data">
                 <h3>Upload Media</h3>
+				<div class="form-group">
+                  <select class="form-control" id="type" type="radio" name="type" required>
+                    <option value="0" selected>Video</option>
+                    <option value="1">Audio</option>
+                  </select>
+                </div>
                 <div class="group">
                   <input type="text" id="topic" name="topic" autocomplete="off" required>
                   <label  class="label-name" for="topic"><span class="content-name">Topic</span></label>

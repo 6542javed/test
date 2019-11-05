@@ -18,7 +18,7 @@
   {
     $page=$data2[0];
     ?>
-      <a href="<?php echo 'Question Papers/'.$year.'/'.$subject.'/'.$page ?>" target="_blank"><img src="<?php echo 'Question Papers/'.$year.'/'.$subject.'/'.$page ?>" width="200px"></img></a>
+      <a href="<?php echo '../media/Question Papers/'.$year.'/'.$subject.'/'.$page ?>" target="_blank"><img src="<?php echo '../media/Question Papers/'.$year.'/'.$subject.'/'.$page ?>" width="200px"></img></a>
     <?php
   }
   echo "</ul>";

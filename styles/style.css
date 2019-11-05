@@ -113,6 +113,10 @@ background-color: white;
 #underline{
   border-bottom: 2px solid white;
 }
+.view-more-div{
+  display:block;
+  clear:both;
+}
 .view-more{
   background-color: transparent;
   padding: 5px 30px;

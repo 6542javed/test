@@ -68,34 +68,81 @@ require "require/config.php";
     <div id="ebooks" class="container-fluid">
       <center><h1>E-Books</h1></center>
       <?php
-      $query = "select thumbname from document limit 6";
+      $query = "select thumbname, name,saved_as from document where type = 'e' limit 6";
       $result=$connect->query($query);
       while($data = mysqli_fetch_row($result)){
-        $title = $data[0];
+        $title1 = $data[0];
+        $title2 = $data[1];
+        $title3 = $data[2];
         ?>
         <div style="padding: 0px 10px;" class="col-xs-6 col-sm-4 col-md-2">
           <div class="thumbnail">
-            <img src="media/pdf/thumbs/<?php echo $title ?>.jpeg" alt="...">
+            <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="...">
             <div class="caption">
-              <h4><?php echo $title; ?></h4>
+              <h4><?php echo $title2; ?></h4>
               <p style="padding:0px 0px;" align="center">
-                <a href="media/pdf/<?php echo $title; ?>.pdf" target="_blank" role="button" class="view-pdf-button">View PDF</a>
+                <a href="media/pdf/<?php echo $title3; ?>" target="_blank" role="button" class="view-pdf-button">View PDF</a>
               </p>
             </div>
           </div>
         </div>
       <?php } ?>
+      <div class="view-more-div">
       <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+    </div>
     </div>
     <div id="collegePubs" class="container-fluid">
       <center><h1>College Publications</h1></center>
-      
+      <?php
+      $query = "select thumbname, name,saved_as from document where type = 'c' limit 6";
+      $result=$connect->query($query);
+      while($data = mysqli_fetch_row($result)){
+        $title1 = $data[0];
+        $title2 = $data[1];
+        $title3 = $data[2];
+        ?>
+        <div style="padding: 0px 10px;" class="col-xs-6 col-sm-4 col-md-2">
+          <div class="thumbnail">
+            <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="...">
+            <div class="caption">
+              <h4><?php echo $title2; ?></h4>
+              <p style="padding:0px 0px;" align="center">
+                <a href="media/pdf/<?php echo $title3; ?>" target="_blank" role="button" class="view-pdf-button">View PDF</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      <?php } ?>
+      <div class="view-more-div">
+        <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+      </div>
     </div>
-
-
 
     <div id="localPubs" class="container-fluid">
       <center><h1>Local Publications</h1></center>
+      <?php
+      $query = "select thumbname, name, saved_as from document where type = 'l' limit 6";
+      $result=$connect->query($query);
+      while($data = mysqli_fetch_row($result)){
+        $title1 = $data[0];
+        $title2 = $data[1];
+        $title3 = $data[2];
+        ?>
+        <div style="padding: 0px 10px;" class="col-xs-6 col-sm-4 col-md-2">
+          <div class="thumbnail">
+            <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="...">
+            <div class="caption">
+              <h4><?php echo $title2; ?></h4>
+              <p style="padding:0px 0px;" align="center">
+                <a href="media/pdf/<?php echo $title3; ?>" target="_blank" role="button" class="view-pdf-button">View PDF</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      <?php } ?>
+      <div class="view-more-div">
+      <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+      </div>
 
     </div>
 
@@ -116,7 +163,7 @@ require "require/config.php";
           <center><h1>Video Lectures</h1></center>
           <div class="sectionContent">
             <?php
-            $videos = "select distinct speaker from video";
+            $videos = "select distinct speaker from media";
             $result=$connect->query($videos);
             while($data = mysqli_fetch_row($result)){
               $speaker = $data[0];
