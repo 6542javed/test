@@ -8,7 +8,7 @@ require "require/config.php";
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Digital library</title>
+  <title>Digital library (Javed)</title>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
   <script src="bootstrap/js/bootstrap.js"></script>
   <script src="bootstrap/js/jquery.min.js"></script>
