@@ -51,7 +51,9 @@ require "require/config.php";
           <?php
           if(isset($_SESSION['user']))
           {
+            $user=$_SESSION['table'];
             ?>
+            <li class="dashboard"><a href="users/<?php echo $user ?>/dashboard.php"><span class="glyphicon glyphicon-log-out"></span>Dashboard</a></li>
             <li class="sign_in_out"><a href="require/logout.php"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
             <?php
           }
@@ -100,12 +102,15 @@ require "require/config.php";
         $title1 = $data[0];
         $title2 = $data[1];
         $title3 = $data[2];
+
+        //LIMITING THE TITLE Name
+        $lm_title2 = (strlen($title2) > 19) ? substr($title2,0,16).'...' : $title2;
         ?>
         <div style="padding: 0px 10px;" class="col-xs-6 col-sm-4 col-md-2">
           <div class="thumbnail">
             <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="...">
             <div class="caption">
-              <h4><?php echo $title2; ?></h4>
+              <h4 title="<?php echo $title2 ?>"><?php echo $lm_title2; ?></h4>
               <p style="padding:0px 0px;" align="center">
                 <a href="media/pdf/<?php echo $title3; ?>" target="_blank" role="button" class="view-pdf-button">View PDF</a>
               </p>

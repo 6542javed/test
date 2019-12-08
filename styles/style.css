@@ -39,7 +39,11 @@ h1{
 .sign_in_out{
   background: orange;
 }
+.dashboard{
+  background: mediumaquamarine;
+  color:white;
 
+}
 .mainNavbar{
   position: relative;
 }

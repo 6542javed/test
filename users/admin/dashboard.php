@@ -44,9 +44,12 @@ require "../../require/config.php";
   <div class="containerdiv">
     <div class="menu">
       <ul class="nav">
-        <h3 id="menu_category">Personal</h3>
+        <h3 id="menu_category">DASHBOARD</h3>
         <li class="nav-item">
           <a class="nav-link active" href="#home" data-toggle="tab">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="../../index.php">Visit Site</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#reset_pass" data-toggle="tab">Reset Pasword</a>

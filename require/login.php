@@ -15,6 +15,7 @@ if( $count == 1){
 while($data = mysqli_fetch_row($result)){
   $_SESSION['user'] = $data[0];
   $_SESSION['type'] = $type;
+  $_SESSION['table'] = $table;
 }
 if($type == 0)
 	header("Location: ../users/admin/dashboard.php");
