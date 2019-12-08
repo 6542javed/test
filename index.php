@@ -13,7 +13,7 @@ require "require/config.php";
   <script src="bootstrap/js/bootstrap.js"></script>
   <script src="bootstrap/js/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/main.css">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
@@ -39,8 +39,9 @@ require "require/config.php";
       <!-- Menu items -->
       <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="nav navbar-nav">
-          <li><a class="scroll" href="#header">E-Books</a></li>
+          <li><a class="scroll" href="#header">Home</a></li>
           <li><a class="scroll" href="#collegePubs">College Publications</a></li>
+          <li><a class="scroll" href="#ebooks">E-Books</a></li>
           <li><a class="scroll" href="#localPubs">Local Publications</a></li>
           <li><a class="scroll" href="#audioLectures">Audio Lectures</a></li>
           <li><a class="scroll" href="#videoLectures">Video Lectures</a></li>
@@ -53,7 +54,7 @@ require "require/config.php";
           {
             $user=$_SESSION['table'];
             ?>
-            <li class="dashboard"><a href="users/<?php echo $user ?>/dashboard.php"><span class="glyphicon glyphicon-log-out"></span>Dashboard</a></li>
+            <li class="dashboard_btn_home"><a href="users/<?php echo $user ?>/dashboard.php"><span class="glyphicon glyphicon-log-out"></span> Dashboard</a></li>
             <li class="sign_in_out"><a href="require/logout.php"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
             <?php
           }
@@ -66,32 +67,17 @@ require "require/config.php";
       </div>
     </div>
   </nav>
-  <div class="sectioncontainer">
-    <div id="ebooks" class="container-fluid">
-      <center><h1>E-Books</h1></center>
-      <?php
-      $query = "select thumbname, name,saved_as from document where type = 'e' limit 6";
-      $result=$connect->query($query);
-      while($data = mysqli_fetch_row($result)){
-        $title1 = $data[0];
-        $title2 = $data[1];
-        $title3 = $data[2];
-        ?>
-        <div style="padding: 0px 10px;" class="col-xs-6 col-sm-4 col-md-2">
-          <div class="thumbnail">
-            <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="...">
-            <div class="caption">
-              <h4><?php echo $title2; ?></h4>
-              <p style="padding:0px 0px;" align="center">
-                <a href="media/pdf/<?php echo $title3; ?>" target="_blank" role="button" class="view-pdf-button">View PDF</a>
-              </p>
-            </div>
-          </div>
+    <div id="home" class="container-fluid index-home">
+        <div class="text">
+        <div class="title">
+          Digital library<hr>
         </div>
-      <?php } ?>
-      <div class="view-more-div">
-      <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
-    </div>
+        <div class="description">
+          <p>Welcome to the Digital library of Kaliabor College. Here you find the collection of all the Magazines, Books published by our college
+             along with some of the Books that are considered neccessary for College Students of every course in E-book format all in one place.
+          Moreover, you also get access to some of the Audio, Video lectures and previous year's Question papers that are provided by the Professors and Students of Kaliabor College.</p>
+        </div>
+      </div>
     </div>
     <div id="collegePubs" class="container-fluid">
       <center><h1>College Publications</h1></center>
@@ -108,9 +94,36 @@ require "require/config.php";
         ?>
         <div style="padding: 0px 10px;" class="col-xs-6 col-sm-4 col-md-2">
           <div class="thumbnail">
-            <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="...">
+            <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="Book thumbnail image">
             <div class="caption">
               <h4 title="<?php echo $title2 ?>"><?php echo $lm_title2; ?></h4>
+              <p style="padding:0px 0px;" align="center">
+                <a href="media/pdf/<?php echo $title3; ?>" target="_blank" role="button" class="view-pdf-button">View PDF</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      <?php } ?>
+      <div class="view-more-div">
+        <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+      </div>
+    </div>
+
+    <div id="ebooks" class="container-fluid">
+      <center><h1>E-Books</h1></center>
+      <?php
+      $query = "select thumbname, name,saved_as from document where type = 'e' limit 6";
+      $result=$connect->query($query);
+      while($data = mysqli_fetch_row($result)){
+        $title1 = $data[0];
+        $title2 = $data[1];
+        $title3 = $data[2];
+        ?>
+        <div style="padding: 0px 10px;" class="col-xs-6 col-sm-4 col-md-2">
+          <div class="thumbnail">
+            <img src="media/pdf/thumbs/<?php echo $title1 ?>.jpeg" alt="...">
+            <div class="caption">
+              <h4><?php echo $title2; ?></h4>
               <p style="padding:0px 0px;" align="center">
                 <a href="media/pdf/<?php echo $title3; ?>" target="_blank" role="button" class="view-pdf-button">View PDF</a>
               </p>
@@ -146,7 +159,7 @@ require "require/config.php";
         </div>
       <?php } ?>
       <div class="view-more-div">
-      <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+        <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
       </div>
 
     </div>
@@ -154,34 +167,47 @@ require "require/config.php";
     <div id="audioLectures" class="container-fluid">
       <center><h1>Audio Lectures</h1></center>
       <div class="sectionContent">
-        <p class="text-center">Deep Work | Chapter 0 | Cal Newport</p>
-        <audio controls >
-          <source src="media/audio/6d7ae8f2bf0150cbafa08970e5675bce.mp3" type="audio/mp3">
-          </audio>
-          <p class="text-center">Deep Work | Chapter 1 | Cal Newport</p>
-          <audio controls >
-            <source src="media/audio/f02024893fc77c7f0a80da15ec8d79ea.mp3" type="audio/mp3">
-            </audio>
+        <?php
+        $audios = "select distinct speaker from media where type='1' limit 6";
+        $result=$connect->query($audios);
+        while($data = mysqli_fetch_row($result)){
+          $speaker = $data[0];
+          ?>
+          <div style="padding:0px 10px; width: auto;" class="col-xs-6 col-sm-4 col-md-2">
+            <a href="resources/audios.php?s=<?php echo $speaker; ?>" >
+              <img width="120px" src="images/folder.svg" alt="...">
+              <p class="text-center">
+                <?php echo $speaker; ?>
+              </p>
+            </a>
           </div>
-        </div>
+        <?php } ?>
+      </div>
+      <div class="view-more-div">
+        <center><a href="resources/audios.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+      </div>
+      </div>
         <div id="videoLectures" class="container-fluid">
           <center><h1>Video Lectures</h1></center>
           <div class="sectionContent">
             <?php
-            $videos = "select distinct speaker from media";
+            $videos = "select distinct speaker from media where type = '0' limit 6";
             $result=$connect->query($videos);
             while($data = mysqli_fetch_row($result)){
               $speaker = $data[0];
               ?>
               <div style="padding:0px 10px; width: auto;" class="col-xs-6 col-sm-4 col-md-2">
                 <a href="resources/videos.php?s=<?php echo $speaker; ?>" >
-                  <img width="150px" src="images/folder.svg" alt="...">
+                  <img width="120px" src="images/folder.svg" alt="...">
                   <p class="text-center">
                     <?php echo $speaker; ?>
                   </p>
                 </a>
               </div>
             <?php } ?>
+          </div>
+          <div class="view-more-div">
+            <center><a href="resources/videos.php?all" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
           </div>
         </div>
 
@@ -191,7 +217,7 @@ require "require/config.php";
           $folder = "select distinct subject, year, course, class from question_papers";
           $result=$connect->query($folder);
           ?>
-          <table class="table table-responsive">
+          <table class="table table-hover table-responsive">
             <tr id="table_title">
               <th>Subject</th>
               <th>Year</th>
@@ -203,7 +229,7 @@ require "require/config.php";
               $subject = $data[0];
               $year = $data[1];
               $course = $data[2];
-              $class = $data[3]
+              $class = $data[3];
               ?>
               <tr>
                 <td><a href="resources/q_papers.php?sub=<?php echo $subject; ?>&year=<?php echo $year;?>&course=<?php echo $course;?>&class=<?php echo $class ?>" target="_blank"><?php echo $subject; ?></a></td>
@@ -213,19 +239,30 @@ require "require/config.php";
               </tr>
             <?php } ?>
           </table>
+          <div class="view-more-div">
+            <center><a href="resources/q_papers.php?all" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+          </div>
         </div>
 
 
 
 
         <div id="aboutUs" class="container-fluid">
-          <center><h1>About Us</h1></center>
+          <!-- <center><h1>About Us</h1></center> -->
           <div class="sectionContent">
+            <div class="about-us-left">
+              <div class="container-fluid">
+                <h1>About Us</h1>
+                Department of BCA, Kaliabor College
+              </div>
 
+            </div>
+            <div class="about-us-right">
+
+            </div>
           </div>
         </div>
 
-      </div> <!--close tab of the sectionContainer div-->
       <!-- login modal -->
       <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -274,31 +311,39 @@ require "require/config.php";
 
 
       <!-- footer area -->
-      <div id="footer" class="col-md-12" style="padding-top: 70px; min-height: 400px; background:#282828;">
+      <div id="footer" class="col-md-12">
+        <div class="footer-top">
+          <span>Digital Library of Kaliabor College</span>
+          <a href="#" title="Back to Top"><span class="glyphicon glyphicon-arrow-up back-to-top"></span></a>
+        </div>
         <div class="row">
-          <div  class="col-md-4">
+          <div class="col-md-offset-2 col-md-8">
             <h3>Links</h3>
-            <ul id="footer_list">
-              <li><a class="scroll" href="#ebooks">E-Books</a></li>
+            <hr/>
+            <ul class="list-inline" id="footer_list">
+              <li><a class="scroll" href="#header">Home</a></li>
               <li><a class="scroll" href="#collegePubs">College Publications</a></li>
+              <li><a class="scroll" href="#ebooks">E-Books</a></li>
               <li><a class="scroll" href="#localPubs">Local Publications</a></li>
               <li><a class="scroll" href="#audioLectures">Audio Lectures</a></li>
               <li><a class="scroll" href="#videoLectures">Video Lectures</a></li>
               <li><a class="scroll" href="#questionPapers">Question Papers</a></li>
               <li><a class="scroll" href="#aboutUs">About Us</a></li>
             </ul>
-
-          </div>
-          <div class="col-md-4">
-            <h3>Support Us</h3>
-          </div>
-          <div class="col-md-4">
-            <h3>Contact Us</h3>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-md-offset-2 col-md-8">
+            <h3>Contact Us</h3><hr width="50%"/>
+            <font style="color: grey" ><b>Helpline No:</b> 9876543210<br/>
+            <b>Email ID:</b> example@gmail.com</font>
+          </div>
+
+        </div>
+
+        <div class="row copyright">
           <center>
-            <p style="color:white"><span class="glyphicon glyphicon-copyright-mark"></span> Copyright 2019. Kaliabor College</p>
+            <p><span style="font-size: 0.8em" class="glyphicon glyphicon-copyright-mark"></span> Copyright 2019. Kaliabor College</p>
           </center>
         </div>
       </div>
@@ -307,5 +352,6 @@ require "require/config.php";
       <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
       <script src="styles/javascript.js"></script>
       <script src="styles/jquery.js"></script>
+      <script src="styles/effects.js"></script>
     </body>
     </html>

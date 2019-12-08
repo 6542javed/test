@@ -1,15 +1,15 @@
 <?php
 if(isset($_POST['register']))
 {
-  $name=$_POST['name'];
-  $institute=$_POST['institute'];
-  $user=$_POST['user'];
-  $course=$_POST['course'];
-  $semester=$_POST['semester'];
-  $email=$_POST['email'];
-  $contact=$_POST['contact'];
-  $pass=$_POST['password'];
-  $c_pass=$_POST['confirm_password'];
+  $name= htmlentities($_POST['name']);
+  $institute= htmlentities($_POST['institute']);
+  $user= htmlentities($_POST['user']);
+  $course= htmlentities($_POST['course']);
+  $semester= htmlentities($_POST['semester']);
+  $email= htmlentities($_POST['email']);
+  $contact= htmlentities($_POST['contact']);
+  $pass= htmlentities($_POST['password']);
+  $c_pass= htmlentities($_POST['confirm_password']);
   $temp=0;
   if($pass==$c_pass){
     require '../require/config.php';

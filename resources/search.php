@@ -15,7 +15,7 @@ require_once '../require/config.php';
   </div>
   <div class="container" id="ebooksPageContent">
     <h1 id="underline">E-Books</h1>
-    <form class="form-inline" action="search.php?s=<?php if(isset($_GET['search_term']))echo $_GET['search_term'];?>" method="get">
+    <form class="form-inline" action="search.php?s=<?php if(isset($_GET['search_term']))echo htmlentities($_GET['search_term']);?>" method="get">
       <div class="form-group">
         <input type="text" class="form-control" id="exampleInputName2" placeholder="Search" name="search_term">
       </div>
@@ -24,7 +24,7 @@ require_once '../require/config.php';
     </form>
     <?php
     if(isset($_GET['search_term'])){
-      $search = $_GET['search_term'];
+      $search = htmlentities($_GET['search_term']);
     }else{
       $search = ""; //Default its blank, so evrything gets showed lol
     }

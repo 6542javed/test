@@ -10,10 +10,10 @@ $extension=".pdf";
 if(isset($_POST['category']) && isset($_POST['title_book']) && isset($_POST['author']) && isset($_FILES['file']))
 {
   //declaring vars
-  $category=$_POST['category'];
-  $title_book=$_POST['title_book'];
-  $author=$_POST['author'];
-  $file=$_FILES['file']; //OUTPUT: Array
+  $category= htmlentities($_POST['category']);
+  $title_book= htmlentities($_POST['title_book']);
+  $author= htmlentities($_POST['author']);
+  $file= $_FILES['file']; //OUTPUT: Array
   $original_filename = $file['name']; //OUTPUT: maths2.pdf
   //$file_type_full = explode('/',$file['type']);//OUTPUT: 1=>application, 2=>pdf
 
@@ -25,9 +25,18 @@ if(isset($_POST['category']) && isset($_POST['title_book']) && isset($_POST['aut
   $filename_without_extension = explode('.',$original_filename);//SPLITTED INTO maths2 and pdf
   $filename_without_extension = $filename_without_extension[0];//OUTPUT: maths2
 
+  function clean($string) {
+    $string = str_replace(' ', '_', $string); // Replaces all spaces with hyphens.
+    $string = preg_replace('/[^A-Za-z0-9\ - ]/', '', $string); // Removes special chars.
+
+    return preg_replace('/_+/', '_', $string); // Replaces multiple hyphens with single one.
+  }
+
+  $filename_without_extension = clean($filename_without_extension);
+
   //generate filename lol
   $str=rand();//OUTPUT: random
-  $filename_saved_as = md5($str).'_'.$original_filename; //OUTPUT: random_maths2.pdf
+  $filename_saved_as = md5($str).'_'.$filename_without_extension.'.pdf'; //OUTPUT: random_maths2.pdf
 
   //function calling lol
    // = return_file_extension($file_type_full);//INSERT: application/pdf OUTPUT:pdf
@@ -46,9 +55,10 @@ if(isset($_POST['category']) && isset($_POST['title_book']) && isset($_POST['aut
     $insert = "insert into document(type, name, author, saved_as, thumbname) values('$category','$title_book','$author','$filename_saved_as','$filename_without_extension')";
     if($connect->query($insert)){
       echo '<br>file Uploaded succesfully<br>';
-      echo '<a href="../users/admin/dashboard.php"><button type="button" class="btn btn-default">Go Back</button></a>';
+      echo '<a href="../users/admin/dashboard.php#Up_doc"><button type="button" class="btn btn-default">Go Back</button></a>';
       //exec('gswin32 -sDEVICE=jpeg -dFirstPage=1 -dLastPage=1 -dNOPAUSE -dJPEGQ=100 -dGraphicsAlphaBits=4 -dTextAlphaBits=4 -g250X350 -r40 -dUseCropBox -dUseTrimBox -sOutputFile='.$directorythumb.$filename_without_extension.'.jpeg ../media/pdf/'.$filename_saved_as_without_extension.'.pdf');
-      exec('gswin32 -dSAFER -dBATCH -dNOPAUSE -sDEVICE=jpeg -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -g250x350 -r30 -sOutputFile='.$directorythumb.$filename_without_extension.'.jpeg ../media/pdf/'.$filename_saved_as_without_extension.'.pdf');
+      exec('gswin32 -dSAFER -dBATCH -dNOPAUSE -sDEVICE=jpeg -dPSFitPage -g250x350 -sOutputFile='.$directorythumb.$filename_without_extension.'.jpeg ../media/pdf/'.$filename_saved_as_without_extension.'.pdf');
+      //new//exec('gswin32 -dSAFER -dBATCH -dNOPAUSE -sDEVICE=jpeg -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -g250x350 -r30 -sOutputFile='.$directorythumb.$filename_without_extension.'.jpeg ../media/pdf/'.$filename_saved_as_without_extension.'.pdf');
     }else{
       echo 'File Name too long, possibly.';
       //echo $connect->error;
@@ -72,7 +82,8 @@ if(isset($_POST['category']) && isset($_POST['title_book']) && isset($_POST['aut
   //   echo "File already exists";
   // }
 }else{
-  echo 'lol';
+  echo 'Error: File Size exceeds 80MB! ';
+  echo '<a href="../users/admin/dashboard.php#Up_doc"><button type="button" class="btn btn-default">Go Back</button></a>';
 }
 
 

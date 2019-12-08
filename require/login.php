@@ -1,8 +1,8 @@
 <?php
 require 'config.php';
-$type = $_POST['user'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+$type = htmlentities($_POST['user']);
+$username = htmlentities($_POST['username']);
+$password = htmlentities($_POST['password']);
 if($type == 0)
   $table = 'admin';
 else if($type == 1)
@@ -20,8 +20,8 @@ while($data = mysqli_fetch_row($result)){
 if($type == 0)
 	header("Location: ../users/admin/dashboard.php");
 else if($type == 1)
-	header("Location: ../users/librarian/dashboard.php");
-else echo "something went wrong";
+	header("Location: ../users/lib_member/dashboard.php");
+  else echo "something went wrong";
 }
 else if($count == 0){
 echo 'Either your username or password is incorrect';

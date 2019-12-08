@@ -13,7 +13,7 @@ require "../../require/config.php";
   <script src="../../bootstrap/js/bootstrap.js"></script>
   <script src="../../bootstrap/js/jquery.min.js"></script>
   <script src="../../bootstrap/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../../styles/style.css">
+  <!-- <link rel="stylesheet" href="../../styles/main.css"> -->
   <link rel="stylesheet" href="../../styles/dashboard.css">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -77,7 +77,6 @@ require "../../require/config.php";
     </li> -->
   </ul>
 </div>
-<div class="content">
   <div class="tab-content">
     <div class="nav-button">
       <div class="line"></div>
@@ -86,19 +85,80 @@ require "../../require/config.php";
     </div>
     <div id="home" class="tab-pane active fade in">
       <div class="dashboard">
-        <h3>homepage of the admin dashboard</h3>
-		<div class="box">
-        <div class="box1">
-          Ebooks
+		<div class="boxcontainer">
+        <div class="box">
+          Ebooks<br/>
+          <div class="count">
+            <?php
+            $query = "select * from document where type= 'e'";
+            if($connect->query($query)){
+              $result=$connect->query($query);
+              $rows=mysqli_num_rows($result);
+              echo $rows;
+            } ?>
+          </div>
+
         </div>
-        <div class="box2">
-          College Magazines
+        <div class="box">
+          College Publishing<br/>
+          <div class="count">
+            <?php
+            $query = "select * from document where type= 'c'";
+            if($connect->query($query)){
+              $result=$connect->query($query);
+              $rows=mysqli_num_rows($result);
+              echo $rows;
+            } ?>
+          </div>
         </div>
-        <div class="box3">
-          Audios
+        <div class="box">
+          Local Publishing<br/>
+          <div class="count">
+            <?php
+            $query = "select * from document where type= 'l'";
+            if($connect->query($query)){
+              $result=$connect->query($query);
+              $rows=mysqli_num_rows($result);
+              echo $rows;
+            } ?>
+          </div>
         </div>
-        <div class="box4">
-          videos
+        <div class="box">
+          Audios<br/>
+          <div class="count">
+            <?php
+            $query = "select * from media where type= '1'";
+            if($connect->query($query)){
+              $result=$connect->query($query);
+              $rows=mysqli_num_rows($result);
+              echo $rows;
+            } ?>
+          </div>
+        </div>
+        <div class="box">
+          Videos<br/>
+          <div class="count">
+            <?php
+            $query = "select * from media where type= '0'";
+            if($connect->query($query)){
+              $result=$connect->query($query);
+              $rows=mysqli_num_rows($result);
+              echo $rows;
+            } ?>
+          </div>
+        </div>
+        <div class="box">
+          Question Papers<br/>
+          <div class="count">
+            <?php
+            $query = "select * from document where type= 'e'";
+            if($connect->query($query)){
+              $result=$connect->query($query);
+              $rows=mysqli_num_rows($result);
+              echo $rows;
+            } ?>
+          </div>
+
         </div>
 		</div>
       </div>
@@ -109,9 +169,9 @@ require "../../require/config.php";
         $admin_id = $_SESSION['user'];
         if(isset($_POST['old']) && isset($_POST['new']) && isset($_POST['confirm']))
         {
-          $old=$_POST['old'];
-          $new1=$_POST['new'];
-          $new2=$_POST['confirm'];
+          $old= htmlentities($_POST['old']);
+          $new1= htmlentities($_POST['new']);
+          $new2= htmlentities($_POST['confirm']);
           if($new1 == $new2)
           {
             require_once "../../require/config.php" ;
@@ -185,12 +245,12 @@ require "../../require/config.php";
         if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['contact']) && isset($_POST['address'])
           && isset($_POST['user_id']) && isset($_POST['password']))
           {
-            $fname = $_POST['fname'];
-            $lname = $_POST['lname'];
-            $contact = $_POST['contact'];
-            $addr = $_POST['address'];
-            $user_id = $_POST['user_id'];
-            $pass = $_POST['password'];
+            $fname = htmlentities($_POST['fname']);
+            $lname = htmlentities($_POST['lname']);
+            $contact = htmlentities($_POST['contact']);
+            $addr = htmlentities($_POST['address']);
+            $user_id = htmlentities($_POST['user_id']);
+            $pass = htmlentities($_POST['password']);
             require_once "../../require/config.php";
             $register = "insert into lib_member(first_name, last_name, contact_no, address, username, password)
             values('$fname', '$lname', '$addr', '$contact', '$user_id', '$pass')";
@@ -307,13 +367,15 @@ require "../../require/config.php";
         <div class="dashboard">
             <form class="form-horizontal" method="POST" action="../../resources/dashuploading.php" enctype="multipart/form-data">
               <h3>Upload document</h3>
-              <div class="form-group">
-                <select class="form-control" id="category" type="radio" name="category" required>
-                    <option value="e" selected>Ebook</option>
-                  	<option value="c">College Publication</option>
-                  	<option value="l">Local Publication</option>
-                  	<option value="p">Paid Publication</option>
-                </select>
+              <div class="container-fluid">
+                <div class="form-group">
+                  <select class="form-control" id="category" type="radio" name="category" required>
+                      <option value="e" selected>Ebook</option>
+                    	<option value="c">College Publication</option>
+                    	<option value="l">Local Publication</option>
+                    	<option value="p">Paid Publication</option>
+                  </select>
+                </div>
               </div>
               <div class="group">
                 <input type="text" id="name" name="title_book" autocomplete="off" required>
@@ -337,11 +399,13 @@ require "../../require/config.php";
         <div class="dashboard">
               <form class="form-horizontal" method="POST" action="../../resources/uploading.php" enctype="multipart/form-data">
                 <h3>Upload Media</h3>
-				<div class="form-group">
-                  <select class="form-control" id="type" type="radio" name="type" required>
-                    <option value="0" selected>Video</option>
-                    <option value="1">Audio</option>
-                  </select>
+				        <div class="container-fluid">
+                  <div class="form-group">
+                    <select class="form-control" id="type" type="radio" name="type" required>
+                      <option value="0" selected>Video</option>
+                      <option value="1">Audio</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="group">
                   <input type="text" id="topic" name="topic" autocomplete="off" required>
@@ -408,7 +472,6 @@ require "../../require/config.php";
   Enter a valid email address
 </div> -->
 
-</div>
 </div>
 <script src="../../styles/javascript.js"></script>
 <script src="../../styles/jquery.js"></script>

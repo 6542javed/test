@@ -1,0 +1,74 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 200vh;
+}
+
+.hero{
+  position: relative;
+  height: 100vh;
+  background: rgba(1, 1, 1, 0.68);
+  background-image: url("images/laptop.jpg");
+  background-blend-mode: multiply;
+  background-position: center 0px;
+  background-size: cover;
+  font-size: 1.5em;
+}
+.text{
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  animation: fadeIn 2s ;
+}
+@keyframes fadeIn{
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.title, .description{
+  margin-top: 50px;
+  color: white;
+}
+
+.title{
+  font-size: 1.5em;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.description{
+  font-style: oblique;
+  width: 60vw;
+  text-align: center;
+}
+
+/* @media screen and (max-width: 560px){
+  .title{
+    font-size: 5em;
+  }
+  .description{
+    font-size: 3em;
+  }
+} */
+
+#content{
+  min-height: ;
+  background: #ccc;
+}

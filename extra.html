@@ -1,10 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <embed src="media\pdf\667225d93d88f8d573749c9b8a1f9b31_Kaliabor_Prospectus_2018-19[1].pdf#scrollbar=0&page=2&view=fit" type="application/pdf" width="150px" height="auto">
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Intersection Observers, Dynamic Dropdown</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <script src="bootstrap/js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="extra.css">
+</head>
+<body>
+  <div class="hero">
+    <div class="text">
+    <div class="title">
+      Digital library<hr>
+    </div>
+    <div class="description">
+      <p>Welcome to the Digital library of Kaliabor College. Here we provide all the magazines, books published by our college.
+      You also get access to some of the books that are considered neccessary for college students of every course.
+      Moreover, you also get acces to some of the Audio, Video lectures and Question papers that are provided by the Professors and students of Kaliabor College.</p>
+    </div>
+  </div>
+  </div>
+  <div id="content" class="container col-md-offset-2 col-md-8">
+    <div class="form-group">
+        <select class="form-control s1" id="s1" onchange="insertOptions('s1','s2');">
+          <option value="">Select</option>
+          <option value="HS">HS</option>
+          <option value="TDC">TDC</option>
+        </select>
+        <select class="form-control s2" id="s2">
+          <option value="--">--</option>
+        </select>
+    </div>
+
+    <div class="file_div_qPaper">
+      <div class="container-fluid">
+        <p class="alert alert-info">note: Please Upload the Pages Sequentially. No multi-page photo allowed.</p>
+      </div>
+      <div class="files">
+        <label for="qPaper_1">Page 1</label>
+      <input type="file" id="qPaper_1" name="qPaper_1" required></input>
+      </div>
+      <div class="files">
+        <label for="qPaper_2">Page 2</label>
+        <input type="file" id="qPaper_2" name="qPaper_2" required></input>
+      </div>
+      <div class="files">
+        <label for="qPaper_3">Page 3</label>
+        <input type="file" id="qPaper_3" name="qPaper_3" required></input>
+      </div>
+      <div class="files">
+        <label for="qPaper_4">Page 4</label>
+        <input type="file" id="qPaper_4" name="qPaper_4" required></input>
+      </div>
+      <div class="files">
+        <label for="qPaper_5">Page 5</label>
+        <input type="file" id="qPaper_5" name="qPaper_5" required></input>
+      </div>
+    </div>
+    <div class="button">
+      <button class="add-more-btn" type="button" name="add_more_btn" onclick="addMore();">Add More Images</button>
+      <button class="add-more-btn reset" type="button" onclick="reset('file_div_qPaper');" name="add_more_btn">Reset</button>
+      <button class="add-more-btn submit right" type="submit" name="submit-upload-page-btn">UPLOAD</button>
+    </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="extra.js"></script>
+</body>
 </html>

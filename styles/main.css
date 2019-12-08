@@ -1,0 +1,362 @@
+/* default stylings */
+body{
+  position: relative;
+}
+p{
+  font-family: "sans-serif";
+  font-size: 1.5em;
+}
+h1{
+  font-family: serif;
+  margin-bottom: 30px;
+}
+#header{
+  background: #00B2BD;
+  font-size:30px;
+  padding: 0 15px;
+  display:flex;
+  text-transform: uppercase;
+  font-weight: bold;
+  /* color: rgb(255, 223, 6); */
+  font-family: serif;
+}
+.logo{
+  flex:1;
+}
+.brand{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+/* overwrite navbar's default property( margin-bottom:20px ) */
+.navbar{
+  margin-bottom:0px;
+}
+
+.sticky{
+  top:0;
+  position: sticky;
+  width: 100%;
+  z-index: 1;
+  overflow:hidden;
+}
+.sign_in_out{
+  background: orange;
+}
+.dashboard_btn_home{
+  background: mediumaquamarine;
+  color:white;
+}
+
+#body{
+background-image: url("../images/slide1.jpeg");
+background-size: cover;
+}
+.view-pdf-button{
+  background-color: transparent;
+  padding: 0.3em 1em;
+  cursor: pointer;
+  border: 2px solid black;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  font-size: 0.8em;
+  transition: all 0.3s ease;
+}
+.view-pdf-button:hover{
+  text-decoration: none;
+  box-shadow: 0px 0px 10px rgb(0, 0, 0.25);
+}
+.view-pdf-button:active{
+  text-decoration: none;
+}
+#home, #ebooks, #collegePubs, #localPubs, #audioLectures, #videoLectures, #questionPapers, #uploadFiles, #aboutUs{
+  min-height: 400px;
+  padding-top:40px;
+  padding-bottom: 40px;
+}
+
+.index-home{
+  padding-top:0px;
+  /* height: calc(100vh - 150px); */
+  height: 90vh;
+  /* background: rgba(161, 161, 161, 0.95);
+  background-image: url("../images/books1.jpg");
+  background-position: top;
+  text-shadow: aqua 0 0 50px; */
+  position: relative;
+  /* height: 100vh; */
+  background: #00B2BD;
+  /* background: rgba(1, 1, 1, 0.53); */
+  background-image: url("../images/laptop.jpg");
+  background-blend-mode: multiply;
+  background-position: center 0px;
+  background-size: cover;
+  font-size: 1.1em;
+  margin-top: 0px;
+  overflow: hidden;
+}
+hr{
+  margin-top: 0px;
+}
+.text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  animation: fadeIn 1.5s ;
+}
+@keyframes fadeIn{
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.title, .description{
+  color: white;
+}
+
+.title{
+  font-size: 1.5em;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.description{
+  font-style: oblique;
+  width: 70vw;
+  text-align: center;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#audioLectures, #videoLectures, #questionPapers, #uploadFiles{
+  display:flex;
+  flex-direction: column;
+}
+.sectionContent{
+  flex:1;
+  margin: 0 auto;
+}
+#ebooks{
+  background-image: url("../images/books2.jpeg");
+  /* background: linear-gradient(to bottom,brown 70%, white 30%); */
+  /* Add the blur effect */
+  background-size: cover;
+  color: white;
+  background-attachment: fixed;
+  padding-bottom: 50px;
+}
+a:active{
+background-color: white;
+}
+.thumbnail{
+  border: none;
+}
+#ebookPage{
+    background-image: url("../images/plywood.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+#ebooksPageContent{
+  padding-top: 100px;
+  color: white;
+}
+#underline{
+  border-bottom: 2px solid white;
+}
+.view-more-div{
+  clear:both;
+}
+.view-more{
+  background-color: transparent;
+  padding: 5px 30px;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+  border: 2px solid white;
+  color: black;
+}
+.view-more:hover{
+  background-color: white;
+  color: black;
+  text-decoration: none;
+}
+#collegePubs{
+  color: brown;
+  background-image: linear-gradient(aqua,mediumaquamarine);
+  /* background: aqua; */
+  /* background-image: radial-gradient( aqua, lime, white); */
+  /* background-image: url("../images/plywood.jpg");
+  background-blend-mode: multiply; */
+  background-position: center;
+  background-size: cover;
+  /* background-attachment: fixed; */
+  /* background: thistle; */
+}
+#localPubs{
+  background: slateblue;
+}
+.table{
+  background: white;
+}
+#table_title{
+  font-weight: bold;
+  background: orange;
+}
+#audioLectures{
+  background-image: url("../images/bible.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+}
+#videoLectures{
+  background: mediumaquamarine;
+}
+#uploadFiles{
+  background-image: url("../images/inkpot.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  /* background: #282828; */
+  color: white;
+}
+#questionPapers{
+  /* background: sandybrown; */
+  background-image: linear-gradient(sandybrown, lightblue);
+}
+#aboutUs{
+  /* background: tomato; */
+  padding-bottom: 50px;
+  /* background-image: url("../images/about_us1.jpg");
+  background-size: cover;
+  background-attachment: fixed; */
+}
+#aboutUs .sectionContent{
+  display: flex;
+}
+.about-us-left, .about-us-right{
+  flex:1;
+  min-height: 400px;
+}
+.about-us-left{
+  background-image: linear-gradient( to left, silver, #cccccc) ;
+  text-align: right;
+}
+.about-us-right{
+  background: lightgreen;
+  background-image: url("../images/bca1.jpg");
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center;
+}
+
+/* #upload_list{
+  list-style: none;
+  padding:0px;
+}
+#upload_list li{
+  width:250px;
+  height: 40px;
+  background: navy;
+  border-radius:40px;
+  font-size: 1.2em;
+  padding:7px;
+  margin:-10px;
+}
+#upload_list li a{
+  color:white;
+  text-decoration: none;
+} */
+.modal-header{
+  background: orange;
+}
+#footer{
+  padding-top: 70px;
+  background:#282828;
+  color:orange;
+  text-align: center;
+}
+.footer-top{
+  position: absolute;
+  top:0;
+  left:0;
+  right: 0;
+  background: grey;
+  height: 70px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.back-to-top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  background: #00B2BD;
+}
+
+#footer a{
+  color: grey;
+  text-align: center;
+  text-decoration: none;
+}
+#footer a:hover{
+  color:white;
+  text-decoration: none;
+}
+#footer_list{
+  padding:0px;
+  list-style:none;
+  text-align:center;
+}
+#footer_list li{
+  padding-bottom: 10px;
+}
+.copyright p{
+  padding-top: 10px;
+  color: white;
+  font-size: 1.3em;
+}
+
+
+
+/* resources/q_paper css stylings */
+
+.pages{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.eachpage{
+}
+
+
+/* upload_paper page stylings */
+.q_paper{
+  padding-top: 100px;
+}

@@ -4,8 +4,8 @@
   {
     if(!empty($_GET['id']))
     {
-      $task = $_GET['task'];
-      $id = $_GET['id'];
+      $task = htmlentities($_GET['task']);
+      $id = htmlentities($_GET['id']);
       //for editing member by principal
       if($task=='edit'){
         $edit="Update lib_member set ";

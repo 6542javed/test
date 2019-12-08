@@ -1,29 +1,89 @@
 /*admin/dashboard.php page*/
+#header{
+  background: #00B2BD;
+  /* background-color: brown; */
+  font-size:30px;
+  padding: 0 15px;
+  display:flex;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: serif;
+
+  z-index: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+.logo{
+  flex:1;
+}
+.brand{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+/* upto here from top is copied from main.css */
+
 h3{
   text-transform: uppercase;
 }
-#header{
-   z-index: 1;
-   position: fixed;
-   top: 0px;
-   left: 0px;
-   right: 0px;
+/* for home tab */
+.boxcontainer{
+  height: 100%;
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0px;
 }
+.box{
+  height: 30vh;
+  width: 30vh;
+  background-image: linear-gradient(to top,  silver, white );
+  text-align: center;
+  margin: 0.5em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 3px 10px rgb(0, 0, 0.25);
+  border-radius: 3%;
+  transition: box-shadow 0.3s ease-out;
+
+  color: black;
+  font-style: oblique;
+  font-size: 1.5em;
+}
+.box:hover{
+  box-shadow: 0px 3px 20px rgb(0, 0, 0.3);
+}
+.count{
+  font-size: 3em;
+}
+
 .containerdiv{
 display: flex;
 flex-direction: row;
 margin-top: 100px;
+min-height: calc(100vh - 100px);
+background-image: linear-gradient(to right,pink, pink, turquoise);
 }
 .menu{
 flex: 1;
 width:20%;
 min-height: calc(100vh - 100px);
 background: rgb(98, 41, 236);
+
+/* styling for mobile friendly navigation */
+  transition: transform 0.3s ease;
 }
-.content{
+.tab-content{
 width: 80%;
-/* background-image: linear-gradient(to right,pink, turquoise); */
-background-image: linear-gradient(to right, turquoise ,#2c3e50);
+height: 100%;
+/* background-image: linear-gradient(to right, turquoise ,#2c3e50); */
 
 }
 .nav{
@@ -58,11 +118,19 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
 
 /* home tab  */
 
-
 .form-horizontal{
+  margin: 20px auto;
+  box-sizing: border-box;
   min-width: 40vw;
   padding: 30px 50px;
   background: white;
+  /*
+  filter: opacity(20%);
+  color: white;
+  background-image: url("../images/bg_form.jpg");
+  background-size: cover;
+  background-position: center;
+  */
   box-shadow: 0px 3px 10px rgb(0, 0, 0.25);
 }
 .dashboard .group{
@@ -80,7 +148,7 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
   outline: none;
   font-size: 18px;
 }
-.dashboard label{
+.dashboard .label-name{
   text-decoration-style: none;
   position:absolute;
   bottom: 0px;
@@ -91,9 +159,18 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
   pointer-events: none;
   font-weight: normal;
 }
+.dashboard .dropdown-label{
+  position:static;
+  border:none;
+}
+.dashboard .dropdown-select{
+border:none;
+box-shadow: none;
+border: 1px solid black;
+}
 .dashboard label::after {
   content: "";
-  position:absolute;
+  position: absolute;
   bottom: -1px;
   left: 0px;
   width: 100%;
@@ -108,8 +185,8 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
   left: 0px;
   transition: all 0.3s ease;
 }
-.dashboard input:focus + .label-name .content-name,
-.dashboard input:valid + .label-name .content-name{
+.dashboard input:focus  + .label-name .content-name,
+.dashboard input:valid  + .label-name .content-name{
   transform: translateY(-100%);
   font-size: 12px;
   color: rgb(0, 255, 132);
@@ -118,6 +195,17 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
 .dashboard input:valid + .label-name::after{
   transform: translatex(0%);
 }
+.dashboard input[name="total_page"]:out-of-range  + .label-name .content-name,
+.dashboard input[name="total_page"]:invalid + .label-name .content-name{
+  color: red;
+  transform: translateY(-100%);
+  font-size: 12px;
+}
+.dashboard input[name="total_page"]:out-of-range + .label-name::after{
+  border-bottom: 3px solid red;
+  transform: translateX(0%);
+}
+
 .file{
   margin: 5px auto;
 }
@@ -140,14 +228,10 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
   background: rgb(175, 31, 31);
   color: white;
 }
-/* styling for mobile friendly navigation */
-.menu{
-  transition: transform 0.3s ease;
-}
 .nav-button{
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 100px;
+  left: 2px;
   display:none;
   cursor: pointer;
 }
@@ -167,7 +251,7 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
     transform: translateX(-100%);
     transition: all 0.3s ease;
   }
-  .content{
+  .tab-content{
     width: 100%;
   }
   .dashboard{
@@ -181,8 +265,102 @@ background-image: linear-gradient(to right, turquoise ,#2c3e50);
     margin: auto auto;
     width: 70vw;
   }
+  .containerdiv{
+    background-image: linear-gradient(to right, pink, turquoise);
+  }
+}
+@media screen and (max-width: 700px){
+  .boxcontainer{
+    width: 80vw;
+  }
 }
 .nav-active{
   width: 100%;
   transform: translateX(0%);
+}
+
+
+
+
+/* resourcs/upload_paper.php css stylings */
+/* .upload_paper{
+  background: #eee;
+}
+.upload_paper {
+  margin: 20px auto;
+  box-sizing: border-box;
+  min-width: 40vw;
+  padding: 30px 50px;
+  background: white;
+  text-transform: uppercase;
+  color: black;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0.25);
+} */
+.files{
+  min-height: 40px;
+  border: 1px solid black;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  background: mediumaquamarine;
+}
+.files input, .files label{
+  flex:1;
+}
+.files input[type="file"]{
+  padding-top: 0px;
+  width: auto;
+}
+.files label{
+  padding-left: 10px;
+}
+.upload_paper .button{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.add-more-btn{
+  padding: 10px 10px;
+  background: blue;
+  border:none;
+  color: white;
+  cursor:pointer;
+  transition:
+  transform 0.1s ease-in-out,
+  box-shadow 0.1s ease-in-out;
+}
+.add-more-btn:active {
+  border:none !important;
+}
+.add-more-btn:hover{
+  transform: translateY(-5%);
+  box-shadow: 0px 5px 5px rgb(0, 0, 0.25);
+}
+.prev{
+  background-color: rgb(10, 154, 85);
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.add-more-btn + .reset{
+  background: red;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.add-more-btn + .submit{
+  background: green;
+}
+.upload_paper p{
+  font-size: 1.2em;
+  font-family: fantasy;
+  color: red;
+  text-transform: capitalize;
+}
+.div-hidden{
+  display: none;
+}
+.div-visible{
+  display:block;
 }

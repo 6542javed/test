@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 30, 2019 at 08:25 AM
+-- Generation Time: Nov 16, 2019 at 05:14 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -51,30 +51,27 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 DROP TABLE IF EXISTS `document`;
 CREATE TABLE IF NOT EXISTS `document` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `author` varchar(50) NOT NULL,
-  `saved_as` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `saved_as` varchar(200) NOT NULL,
   `type` varchar(1) NOT NULL,
-  `thumbname` varchar(30) NOT NULL,
+  `thumbname` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `document`
 --
 
 INSERT INTO `document` (`id`, `name`, `author`, `saved_as`, `type`, `thumbname`) VALUES
-(43, 'Titile', 'Authoe', '741373bdd355be168b472bf525f4d629_maths2.pdf', 'e', 'maths2'),
-(42, 'Titile', 'Authoe', 'b66063a0e6775f6c7053cdf5e3febbe3_maths2.pdf', 'e', 'maths2'),
-(41, 'Titile', 'Authoe', '837abf8a5c2f4fbfb2001c22450a8664_physics2.pdf', 'e', 'physics2'),
-(40, 'Maths2', 'Amths', 'ba3aef03dfb3d546fc5e43002b820d3e_maths2.pdf', 'e', 'maths2'),
-(39, 'Chemistry', 'Author', '32d2097800103fff776f474e0f0465b3_maths1.pdf', 'e', 'maths1'),
-(38, 'physics', 'Author', '57bd4e0df74a549cd36eb5224f0cfd5a_labphysics.pdf', 'e', 'labphysics'),
-(37, 'upload', 'author', '1598771a8890da3d70bede23db8a3312_labchem.pdf', 'e', 'labchem'),
-(36, 'permutation', 'combination', '199201289f66522a2e8c887711b81a8d_kaleidoscope.pdf', 'e', 'kaleidoscope'),
-(35, 'Title', 'Amzaon', 'aa60193c3692b9f1dedc2d4cd949b677_flamingo.pdf', 'e', 'flamingo'),
-(34, 'Chemistry', '2', '6ebe51da6176a4e17b38a380c7ff940e_chem2.pdf', 'e', 'chem2'),
-(33, 'Maths', 'hey', 'f92e995aa5e52806fb462f84acc36a4a_chem1.pdf', 'e', 'chem1');
+(56, 'Summary on Ph.D Thesis', 'Research Cell, Kaliabor College', '37443c80214d4de55b72ed1cf13302c8_Golden_Book.pdf', 'c', 'Golden_Book'),
+(57, 'Plant Physiology', 'Department of Botany, Kaliabor College', '61ad046bb4c7372abd8c295e88fb3ff4_Plant_Physiology.pdf', 'c', 'Plant_Physiology'),
+(58, 'Mathematical excursion to Beta Distribution', 'Arun Mahanta, Dept. of Mathematics', '4bdcb2e4ea39c9c6dff7604bdb8ab255_Mathematical_Excursion_to_Beta_Distribution.pdf', 'c', 'Mathematical_Excursion_to_Beta_Distribution'),
+(59, 'Mathematical excursion- Unit 1', 'Arun Mahanta, Dept. of Mathematics', '3915f7811dd4b642526931e54851c6d0_Mathematical_Excursion_to_Unit_1_of_Major_Paper_5_5.pdf', 'c', 'Mathematical_Excursion_to_Unit_1_of_Major_Paper_5_5'),
+(63, 'College Campus', '6th Semester Students 2016, Kaliabor College', '0f2c650c093ce223e0a256727dc07cc5_College_Campus.pdf', 'c', 'College_Campus'),
+(61, 'Saswat-News Bulletin 16-17', 'IQAC Kaliabor College', '487d08c4f138ebaab9b198c0b9a853ff_Saswat_16_17_News_Bulletin.pdf', 'c', 'Saswat_16_17_News_Bulletin'),
+(62, 'Laboratory Manual for Life science students', 'Dept. of Botany, Kaliabor College', 'bcbdd8c3fe1e79a56e014a977d9943a3_Lab_manual_Life_sc.pdf', 'c', 'Lab_manual_Life_sc'),
+(64, 'Constitution', 'Students Union , Kaliabor College', '70778a2fe6274de6d9b17b87b7ba0fff_constitution_students_union_kaliabor.pdf', 'c', 'constitution_students_union_kaliabor');
 
 -- --------------------------------------------------------
 
@@ -92,15 +89,14 @@ CREATE TABLE IF NOT EXISTS `lib_member` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lib_member`
 --
 
 INSERT INTO `lib_member` (`id`, `first_name`, `last_name`, `contact_no`, `address`, `username`, `password`) VALUES
-(3, 'Javed', 'Ansari', '08136028282', 'Village- Seconee, P.O- Jakhalabandha, District- Nagaon.', 'donald@gmail.com', 'donald'),
-(7, 'Donald', 'Mahanta', 'Kaliabor college boys hostel, kuwaritol.', '9984734343', 'donald_mahanta_1', 'member1');
+(3, 'Javed', 'Ansari', '08136028282', 'Village- Seconee, P.O- Jakhalabandha, District- Nagaon.', 'donald@gmail.com', 'donald');
 
 -- --------------------------------------------------------
 
@@ -112,39 +108,24 @@ DROP TABLE IF EXISTS `media`;
 CREATE TABLE IF NOT EXISTS `media` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `saved_as` varchar(40) NOT NULL,
+  `type` varchar(1) NOT NULL,
   `title` varchar(50) NOT NULL,
   `subject` varchar(30) NOT NULL,
   `speaker` varchar(30) NOT NULL,
   `course` varchar(30) NOT NULL,
   `semester` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `media`
 --
 
-INSERT INTO `media` (`id`, `saved_as`, `title`, `subject`, `speaker`, `course`, `semester`) VALUES
-(1, '', 'sample', 'computer science', 'Donald Mahanta', 'BCA', 'semester 3'),
-(2, '', 'sample', 'computer science', 'Donald Mahanta', 'BCA', 'semester 3'),
-(3, '', 'sample', 'computer science', 'Donald Mahanta', 'BCA', 'semester 3'),
-(4, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(5, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(6, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(7, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(8, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(9, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(10, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(11, '', 'asdfasdf', 'oood', 'Donald Mahanta', 'BCA ', 'asdfs'),
-(12, '', 'what', 'son', 'sldjfl', 'BCA', 'jlkdfjgl'),
-(13, 'f37d925aee93d39560cdc5b9e167b404', 'jh', 'kjh', 'hk', 'jh', 'kjh'),
-(14, '6d7ae8f2bf0150cbafa08970e5675bce', 'Chapter 1', 'Deep Work', 'Cal Newport', 'Audiobook', 'Audiobook'),
-(15, 'ec7df0164925d5c7270205c25ea41fc6', 'Chapter 1', 'Deep Work', 'Cal Newport', 'Audiobook', 'Audiobook'),
-(16, '6354f89bc4822d20ea532cc5259a194f', 'Chapter 1', 'Deep Work', 'Cal Newport', 'Audiobook', 'Audiobook'),
-(17, '2233f4d7d616eafe6e3e8166a1766f32', 'kj', 'lkj', 'kljkj', 'lkj', 'lkj'),
-(18, '1f86c622e3d4dddad761f86d451e8c58', 'kj', 'lkj', 'kljkj', 'lkj', 'lkj'),
-(19, '0101b371b1ee615925ed1240afa8287d', 'kj', 'lkj', 'kljkj', 'lkj', 'lkj'),
-(20, 'f02024893fc77c7f0a80da15ec8d79ea', 'kl', 'jk', 'jk', 'jlj', 'kl');
+INSERT INTO `media` (`id`, `saved_as`, `type`, `title`, `subject`, `speaker`, `course`, `semester`) VALUES
+(21, 'd78cd922f14ae9d51cae62b7ef302023', '0', 'Introduction to Bootstrap', 'Web Designing', 'Bucky Roberts', 'BCA', '5th'),
+(22, '3b4e1780076293dfb4c485fe5bd2e41f', '0', 'Grid System', 'Web designing', 'Bucky Roberts', 'BCA', '5th'),
+(23, 'b8aa787c5c0241a40f39cd550dfa2d5a', '0', 'Text Styles', 'Bootstrap', 'Bucky Roberts', 'BCA', '5th'),
+(26, 'e44fefb96f3ffaf529a20f57058d03ba', '1', 'Introduction', 'Deep Work', 'Javed', 'BSc', '5th');
 
 -- --------------------------------------------------------
 

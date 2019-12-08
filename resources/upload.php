@@ -1,5 +1,5 @@
 <?php require "../require/head.html"; ?>
-<link rel="stylesheet" href="../styles/style.css">
+<link rel="stylesheet" href="../styles/main.css">
 <title>Upload Page</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
   </div>
   <div class="container" style="padding-top: 50px;">
 <?php
-  if($_GET['t']=='e'){
+  if(htmlentities($_GET['t'])=='e'){
 ?>
 <div>
   <form class="form-horizontal" method="POST" action="uploading.php" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
 </div>
 
   <?php }
-  else if($_GET['t']=='a' || $_GET['t']=='v'){
+  else if(htmlentities($_GET['t'])=='a' || htmlentities($_GET['t'])=='v'){
 ?>
 <div>
   <form class="form-horizontal" method="POST" action="uploading.php" enctype="multipart/form-data">
@@ -69,17 +69,17 @@
     </div>
   </form>
 </div>
-<?php }else if($_GET['t']=='y'){ ?>
+<?php }else if( htmlentities($_GET['t'])=='y'){ ?>
   <form class="form-horizontal" method="POST" action="uploading.php" enctype="multipart/form-data">
     <div class="form-group">
       <label class="form-label" for="topic">Youtube Link</label>
       <input class="form-control" type="text" id="topic" name="topic" required>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary" name="media" value="<?php echo $_GET['t']; ?>">Upload</button>
+      <button type="submit" class="btn btn-primary" name="media" value="<?php echo htmlentities($_GET['t']); ?>">Upload</button>
     </div>
   </form>
-<?php }else if($_GET['t']=='c' || $_GET['t']=='l'){ ?>
+<?php }else if( htmlentities($_GET['t'])=='c' || htmlentities($_GET['t'])=='l'){ ?>
 	<form class="form-horizontal" method="POST" action="uploading.php" enctype="multipart/form-data">
     <div class="form-group">
       <label class="form-label" for="name">Title:</label>
