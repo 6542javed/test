@@ -151,7 +151,7 @@ require "../../require/config.php";
           Question Papers<br/>
           <div class="count">
             <?php
-            $query = "select * from document where type= 'e'";
+            $query = "select * from question_papers ";
             if($connect->query($query)){
               $result=$connect->query($query);
               $rows=mysqli_num_rows($result);

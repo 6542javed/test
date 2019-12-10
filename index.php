@@ -20,7 +20,7 @@ require "require/config.php";
 <body  data-spy="scroll" data-target=".navbar" data-offset="100">
   <div id="header">
     <div class="logo">
-      <img src="images/logo.JPG" alt="KC logo" width="100px"></img>
+      <img src="images/logo.PNG" alt="KC logo" width="100px"></img>
     </div>
     <div class="brand">
       Digital Library of Kaliabor College

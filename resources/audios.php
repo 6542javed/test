@@ -5,7 +5,13 @@ require '../require/head.html';
 </head>
 <body>
   <div class="header">
-    <h3>Digital library of Kaliabor College</h3>
+    <div style="text-transform: uppercase; flex: 1;" class="left">
+      <h3>Digital library of Kaliabor College</h3>
+    </div>
+    <div class="right" style="margin-right: 20px;">
+    <img src="../images/logo.PNG" width="100px" alt="">
+    </div>
+
   </div>
 <?php
 require_once '../require/config.php';

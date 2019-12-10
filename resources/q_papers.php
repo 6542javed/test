@@ -6,7 +6,7 @@ require_once "../require/head.html";
 <body>
   <div id="header">
     <div class="logo">
-      <img src="../images/logo.JPG" alt="KC logo" width="100px"></img>
+      <img src="../images/logo.png" alt="KC logo" width="100px"></img>
     </div>
     <div class="brand">
       Digital Library of Kaliabor College
@@ -22,7 +22,7 @@ require_once "../require/head.html";
       $q_id = htmlentities($_GET['q_id']);
 ?>
 <div>
-  <center><h1>Question Papers</h1></center>
+  <center><h1 class="question-paper-heading"><?php echo $subject.' - '.$year; ?></h1></center>
 </div>
   <div class="pages">
 
@@ -31,6 +31,7 @@ require_once "../require/head.html";
         ?>
         <div class="eachpage">
           <a href="<?php echo '../media/question_papers/'.$year.'_'.$subject.'_'.$q_id.'_'.$i.'.jpg' ?>" target="_blank">
+            <center><p>Page <?php echo $i; ?></p></center>
             <img src="<?php echo '../media/question_papers/'.$year.'_'.$subject.'_'.$q_id.'_'.$i.'.jpg' ?>" width="200px"></img>
           </a>
         </div>
@@ -45,7 +46,7 @@ require_once "../require/head.html";
       $result=$connect->query($folder);
       ?>
       <div>
-        <center><h1>Question Papers</h1></center>
+        <center><h1 class="question-paper-heading">Question Papers</h1></center>
       </div>
       <table class="table table-hover table-responsive">
         <tr id="table_title">

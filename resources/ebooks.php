@@ -7,7 +7,7 @@ require_once '../require/config.php';
 <body id="ebookPage">
   <div style="z-index: 1; position:fixed; top:0px; left:0px; right:0px;" id="header">
     <div class="logo">
-      <img src="../images/logo.JPG" alt="KC Logo" width="100px"></img>
+      <img src="../images/logo.PNG" alt="KC Logo" width="100px"></img>
     </div>
     <div class="brand">
       Digital Library of Kaliabor College

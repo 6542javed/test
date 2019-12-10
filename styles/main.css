@@ -12,13 +12,20 @@ h1{
 }
 #header{
   background: #00B2BD;
-  font-size:30px;
+  font-size: 2.5vw;
   padding: 0 15px;
   display:flex;
   text-transform: uppercase;
   font-weight: bold;
   /* color: rgb(255, 223, 6); */
   font-family: serif;
+}
+@media screen and (max-width: 768px){
+#header{
+  font-size: 3.2vw;
+}
+}
+
 }
 .logo{
   flex:1;
@@ -27,6 +34,7 @@ h1{
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  flex-grow: 1;
 }
 /* overwrite navbar's default property( margin-bottom:20px ) */
 .navbar{
@@ -198,8 +206,9 @@ background-color: white;
   text-decoration: none;
 }
 #collegePubs{
-  color: brown;
-  background-image: linear-gradient(aqua,mediumaquamarine);
+  color: black;
+  /* background-image: url("../images/books-hipster.jpg"); */
+  background-image: linear-gradient(mediumaquamarine , aqua);
   /* background: aqua; */
   /* background-image: radial-gradient( aqua, lime, white); */
   /* background-image: url("../images/plywood.jpg");
@@ -353,8 +362,22 @@ background-color: white;
   flex-wrap: wrap;
 }
 .eachpage{
+  background: #eeeeee;
+  box-shadow: 0px 3px 5px black;
+  margin-bottom: 10px;
 }
-
+.eachpage  a{
+  color: black;
+  text-decoration: none;
+}
+.question-paper-heading{
+ margin: auto;
+ min-height: 50px;
+ padding-top: 5px;
+ padding-bottom: 5px;
+ margin-bottom: 10px;
+ background: lightblue;
+}
 
 /* upload_paper page stylings */
 .q_paper{
