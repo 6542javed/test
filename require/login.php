@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+if(isset($_POST['user']) && isset($_POST['username']) && isset($_POST['password'])){
 $type = htmlentities($_POST['user']);
 $username = htmlentities($_POST['username']);
 $password = htmlentities($_POST['password']);
@@ -18,10 +19,10 @@ while($data = mysqli_fetch_row($result)){
   $_SESSION['table'] = $table;
 }
 if($type == 0)
-	header("Location: ../users/admin/dashboard.php");
+	header("Location: ../principal");
 else if($type == 1)
 	header("Location: ../users/lib_member/dashboard.php");
-  else echo "something went wrong";
+else echo "something went wrong";
 }
 else if($count == 0){
 echo 'Either your username or password is incorrect';
@@ -30,4 +31,6 @@ echo 'Either your username or password is incorrect';
 else{
   echo "Error:".$query."<br/>".$connect->error;
 }
+}
+else echo "Please Login!";
 ?>

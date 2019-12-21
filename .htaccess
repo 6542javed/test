@@ -1,0 +1,9 @@
+RewriteEngine on
+
+RewriteRule ^principal users/admin/dashboard.php [NC,L]
+RewriteRule ^librarian users/lib_member/dashboard.php [NC,L]
+RewriteRule ^books resources/ebooks.php [NC,L]
+RewriteRule ^audios resources/audios.php [NC,L]
+RewriteRule ^videos resources/videos.php [NC,L]
+RewriteRule ^questionPaper resources/q_papers.php [NC,L]
+RewriteRule ^login require/login.php [NC,L]

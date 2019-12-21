@@ -1,0 +1,23 @@
+h1[id="underline"]{
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+#ebooksBtnRow{
+  margin-left: 10px;
+}
+
+#search{
+  float: left;
+  padding-right: 20px;
+  width: auto;
+  margin-bottom: 5px;
+}
+
+#filter{
+  display: inline-table;
+}
+  #search-btn{
+  z-index: auto;
+  margin-bottom: 5px;
+}

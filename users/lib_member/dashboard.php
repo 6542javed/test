@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['user']) || !isset($_SESSION['type']) || $_SESSION['type']!=1){
+  die("Authentication Failed. Please login!");
+}
 require "../../require/config.php";
 ?>
 <!DOCTYPE html>
@@ -9,12 +12,11 @@ require "../../require/config.php";
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Digital library</title>
-  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
-  <script src="../../bootstrap/js/bootstrap.js"></script>
-  <script src="../../bootstrap/js/jquery.min.js"></script>
-  <script src="../../bootstrap/js/bootstrap.min.js"></script>
-  <script src="../../styles/javascript.js"></script>
-  <link rel="stylesheet" href="../../styles/dashboard.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <script src="bootstrap/js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="styles/dashboard.css">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script type="text/javascript">
@@ -79,7 +81,7 @@ require "../../require/config.php";
 <body>
   <div id="header">
     <div class="logo">
-      <img src="../../images/logo.JPG" alt="KC logo" width="100px"></img>
+      <img src="images/logo.png" alt="KC logo" width="100px"></img>
     </div>
     <div class="brand">
       Digital Library of Kaliabor College
@@ -93,7 +95,7 @@ require "../../require/config.php";
           <a class="nav-link active" href="#home" data-toggle="tab">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../../index.php">Visit Site</a>
+          <a class="nav-link" href="index.php">Visit Site</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#reset_pass" data-toggle="tab">Reset Pasword</a>
@@ -120,84 +122,7 @@ require "../../require/config.php";
         <div class="line"></div>
       </div>
       <div id="home" class="tab-pane fade in active">
-        <div class="dashboard">
-  		<div class="boxcontainer">
-          <div class="box">
-            Ebooks<br/>
-            <div class="count">
-              <?php
-              $query = "select * from document where type= 'e'";
-              if($connect->query($query)){
-                $result=$connect->query($query);
-                $rows=mysqli_num_rows($result);
-                echo $rows;
-              } ?>
-            </div>
-
-          </div>
-          <div class="box">
-            College Publishing<br/>
-            <div class="count">
-              <?php
-              $query = "select * from document where type= 'c'";
-              if($connect->query($query)){
-                $result=$connect->query($query);
-                $rows=mysqli_num_rows($result);
-                echo $rows;
-              } ?>
-            </div>
-          </div>
-          <div class="box">
-            Local Publishing<br/>
-            <div class="count">
-              <?php
-              $query = "select * from document where type= 'l'";
-              if($connect->query($query)){
-                $result=$connect->query($query);
-                $rows=mysqli_num_rows($result);
-                echo $rows;
-              } ?>
-            </div>
-          </div>
-          <div class="box">
-            Audios<br/>
-            <div class="count">
-              <?php
-              $query = "select * from media where type= '1'";
-              if($connect->query($query)){
-                $result=$connect->query($query);
-                $rows=mysqli_num_rows($result);
-                echo $rows;
-              } ?>
-            </div>
-          </div>
-          <div class="box">
-            Videos<br/>
-            <div class="count">
-              <?php
-              $query = "select * from media where type= '0'";
-              if($connect->query($query)){
-                $result=$connect->query($query);
-                $rows=mysqli_num_rows($result);
-                echo $rows;
-              } ?>
-            </div>
-          </div>
-          <div class="box">
-            Question Papers<br/>
-            <div class="count">
-              <?php
-              $query = "select * from question_papers ";
-              if($connect->query($query)){
-                $result=$connect->query($query);
-                $rows=mysqli_num_rows($result);
-                echo $rows;
-              } ?>
-            </div>
-
-          </div>
-  		</div>
-        </div>
+        <?php require_once "../../resources/dash_home.php"; ?>
       </div>
       <div id="reset_pass" class="tab-pane fade in">
         <div class="dashboard">
@@ -444,7 +369,7 @@ require "../../require/config.php";
                 <div class="modal-body">
                   <h4>Do you really want to logout?</h4>
                 </div>
-                <div class="modal-footer"><form action="../../require/logout.php" method="post">
+                <div class="modal-footer"><form action="require/logout.php" method="post">
                   <button type="button" class="btn btn-default" data-dismiss="modal">No
                   </button>
                   <button id="logoutstyle" type="submit" name="logout" class="btn btn-default">
@@ -456,5 +381,7 @@ require "../../require/config.php";
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
       </div>
+      <script src="styles/javascript.js"></script>
+      <script src="styles/jquery.js"></script>
     </body>
     </html>

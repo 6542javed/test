@@ -1,7 +1,7 @@
 <?php
 require '../require/head.html';
 ?>
-<link rel="stylesheet" href="../styles/videos.css">
+<link rel="stylesheet" href="styles/videos.css">
 </head>
 <body id="ebookPage">
   <!-- <div class="header">
@@ -9,7 +9,7 @@ require '../require/head.html';
   </div> -->
   <div style="z-index: 1; position:fixed; top:0px; left:0px; right:0px;" id="header">
     <div class="logo">
-      <img src="../images/logo.JPG" alt="KC Logo" width="100px"></img>
+      <img src="images/logo.png" alt="KC Logo" width="100px"></img>
     </div>
     <div class="brand">
       Digital Library of Kaliabor College
@@ -37,7 +37,7 @@ if(isset($_GET['s'])){
       <div class="col-md-offset-1 col-md-10 media">
         <div class="col-sm-5 col-xs-12">
           <video width="100%" controls>
-          <source src="../media/video/<?php echo $saved_as; ?>" type="video/mp4">
+          <source src="media/video/<?php echo $saved_as; ?>" type="video/mp4">
           </source>
           </video>
         </div>
@@ -61,8 +61,8 @@ while($data = mysqli_fetch_row($result)){
   $speaker = $data[0];
   ?>
   <div style="padding:10px 10px; width: auto;" class="col-xs-6 col-sm-4 col-md-2">
-    <a href="resources/videos.php?s=<?php echo $speaker; ?>" >
-      <img width="120px" src="../images/folder.svg" alt="...">
+    <a href="videos.php?s=<?php echo $speaker; ?>" >
+      <img width="120px" src="images/folder.svg" alt="...">
       <p class="text-center">
         <?php echo $speaker; ?>
       </p>

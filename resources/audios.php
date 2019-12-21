@@ -1,7 +1,7 @@
 <?php
 require '../require/head.html';
 ?>
-<link rel="stylesheet" href="../styles/audios.css">
+<link rel="stylesheet" href="styles/audios.css">
 </head>
 <body>
   <div class="header">
@@ -9,7 +9,7 @@ require '../require/head.html';
       <h3>Digital library of Kaliabor College</h3>
     </div>
     <div class="right" style="margin-right: 20px;">
-    <img src="../images/logo.PNG" width="100px" alt="">
+    <img src="images/logo.PNG" width="100px" alt="">
     </div>
 
   </div>
@@ -32,7 +32,7 @@ if(isset($_GET['s'])){
       <div class="col-md-offset-1 col-md-10 media">
         <div class="col-sm-5 col-xs-12">
           <audio width="100%" controls>
-          <source src="../media/audio/<?php echo $saved_as; ?>" type="audio/mp3">
+          <source src="media/audio/<?php echo $saved_as; ?>" type="audio/mp3">
           </source>
         </audio>
         </div>
@@ -49,6 +49,24 @@ if(isset($_GET['s'])){
 <?php
 }
 }
+else if(isset($_GET['all'])){
+  $audios = "select distinct speaker from media where type = '1' ";
+  $result=$connect->query($audios);
+  while($data = mysqli_fetch_row($result)){
+    $speaker = $data[0];
+    ?>
+    <div style="padding:10px 10px; width: auto;" class="col-xs-6 col-sm-4 col-md-2">
+      <a href="audios?s=<?php echo $speaker; ?>" >
+        <img width="120px" src="images/folder.svg" alt="...">
+        <p class="text-center">
+          <?php echo $speaker; ?>
+        </p>
+      </a>
+    </div>
+    <?php
+  }
+}
+
 ?>
 </body>
 </html>

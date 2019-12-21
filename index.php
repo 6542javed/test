@@ -54,7 +54,7 @@ require "require/config.php";
           {
             $user=$_SESSION['table'];
             ?>
-            <li class="dashboard_btn_home"><a href="users/<?php echo $user ?>/dashboard.php"><span class="glyphicon glyphicon-log-out"></span> Dashboard</a></li>
+            <li class="dashboard_btn_home"><a href="<?php echo ($user == 'admin' )?"principal" : "librarian" ?>">Dashboard</a></li>
             <li class="sign_in_out"><a href="require/logout.php"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
             <?php
           }
@@ -105,7 +105,7 @@ require "require/config.php";
         </div>
       <?php } ?>
       <div class="view-more-div">
-        <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+        <center><a href="books?college" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
       </div>
     </div>
 
@@ -132,7 +132,7 @@ require "require/config.php";
         </div>
       <?php } ?>
       <div class="view-more-div">
-        <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+        <center><a href="books?ebooks" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
       </div>
     </div>
 
@@ -159,7 +159,7 @@ require "require/config.php";
         </div>
       <?php } ?>
       <div class="view-more-div">
-        <center><a href="resources/ebooks.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+        <center><a href="books?local" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
       </div>
 
     </div>
@@ -174,7 +174,7 @@ require "require/config.php";
           $speaker = $data[0];
           ?>
           <div style="padding:0px 10px; width: auto;" class="col-xs-6 col-sm-4 col-md-2">
-            <a href="resources/audios.php?s=<?php echo $speaker; ?>" >
+            <a href="audios?s=<?php echo $speaker; ?>" >
               <img width="120px" src="images/folder.svg" alt="...">
               <p class="text-center">
                 <?php echo $speaker; ?>
@@ -184,7 +184,7 @@ require "require/config.php";
         <?php } ?>
       </div>
       <div class="view-more-div">
-        <center><a href="resources/audios.php" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+        <center><a href="audios?all" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
       </div>
       </div>
         <div id="videoLectures" class="container-fluid">
@@ -197,7 +197,7 @@ require "require/config.php";
               $speaker = $data[0];
               ?>
               <div style="padding:0px 10px; width: auto;" class="col-xs-6 col-sm-4 col-md-2">
-                <a href="resources/videos.php?s=<?php echo $speaker; ?>" >
+                <a href="videos?s=<?php echo $speaker; ?>" >
                   <img width="120px" src="images/folder.svg" alt="...">
                   <p class="text-center">
                     <?php echo $speaker; ?>
@@ -207,14 +207,14 @@ require "require/config.php";
             <?php } ?>
           </div>
           <div class="view-more-div">
-            <center><a href="resources/videos.php?all" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+            <center><a href="videos?all" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
           </div>
         </div>
 
         <div id="questionPapers" class="container-fluid">
           <center><h1>Question Papers</h1></center>
           <?php
-          $folder = "select distinct subject, year, course, class from question_papers";
+          $folder = "select distinct subject, year, course, class, num_pages, q_id from question_papers limit 10 ";
           $result=$connect->query($folder);
           ?>
           <table class="table table-hover table-responsive">
@@ -230,9 +230,11 @@ require "require/config.php";
               $year = $data[1];
               $course = $data[2];
               $class = $data[3];
+              $num_pages = $data[4];
+              $q_id = $data[5];
               ?>
               <tr>
-                <td><a href="resources/q_papers.php?sub=<?php echo $subject; ?>&year=<?php echo $year;?>&course=<?php echo $course;?>&class=<?php echo $class ?>" target="_blank"><?php echo $subject; ?></a></td>
+                <td><a href="questionpapers?sub=<?php echo $subject; ?>&year=<?php echo $year;?>&course=<?php echo $course;?>&class=<?php echo $class ?>&num_pages=<?php echo $num_pages; ?>&q_id=<?php echo $q_id; ?>"><?php echo $subject; ?></a></td>
                 <td><?php echo $year; ?></td>
                 <td><?php echo $course; ?></td>
                 <td><?php echo $class; ?></td>
@@ -240,7 +242,7 @@ require "require/config.php";
             <?php } ?>
           </table>
           <div class="view-more-div">
-            <center><a href="resources/q_papers.php?all" target="_blank" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
+            <center><a href="questionpapers?all" class="view-more" type="button" name="button"><b>VIEW MORE</b></a></center>
           </div>
         </div>
 
@@ -253,7 +255,11 @@ require "require/config.php";
             <div class="about-us-left">
               <div class="container-fluid">
                 <h1>About Us</h1>
-                Department of BCA, Kaliabor College
+                <p><i><span id="underline">Designed & Developed by </span></p>
+                <span style="color: blue;">Students of BCA 5th Semester(Batch 2019)<br/> Kaliabor College</span><br/><br/>
+                <p><span id="underline">Under Guidance of </span></p>
+                <span style="color: blue;">Mr. Amit Dutta(HOD) BCA Department<br/> Kaliabor College<br/>
+                Mr. Hiranya Kumar Chaliha, Principal<br/> Kaliabor College</span></i>
               </div>
 
             </div>

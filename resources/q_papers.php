@@ -6,7 +6,7 @@ require_once "../require/head.html";
 <body>
   <div id="header">
     <div class="logo">
-      <img src="../images/logo.png" alt="KC logo" width="100px"></img>
+      <img src="images/logo.png" alt="KC logo" width="100px"></img>
     </div>
     <div class="brand">
       Digital Library of Kaliabor College
@@ -30,9 +30,9 @@ require_once "../require/head.html";
       for($i=1 ; $i<= $num_pages; $i++){
         ?>
         <div class="eachpage">
-          <a href="<?php echo '../media/question_papers/'.$year.'_'.$subject.'_'.$q_id.'_'.$i.'.jpg' ?>" target="_blank">
+          <a href="<?php echo 'media/question_papers/'.$year.'_'.$subject.'_'.$q_id.'_'.$i.'.jpg' ?>" target="_blank">
             <center><p>Page <?php echo $i; ?></p></center>
-            <img src="<?php echo '../media/question_papers/'.$year.'_'.$subject.'_'.$q_id.'_'.$i.'.jpg' ?>" width="200px"></img>
+            <img src="<?php echo 'media/question_papers/'.$year.'_'.$subject.'_'.$q_id.'_'.$i.'.jpg' ?>" width="200px"></img>
           </a>
         </div>
 <?php
@@ -65,7 +65,7 @@ require_once "../require/head.html";
           $q_id = $data[5];
           ?>
           <tr>
-            <td><a href="q_papers.php?sub=<?php echo $subject; ?>&year=<?php echo $year;?>&course=<?php echo $course;?>&class=<?php echo $class; ?>&num_pages=<?php echo $num_pages; ?>&q_id=<?php echo $q_id; ?>" target="_blank"><?php echo $subject; ?></a></td>
+            <td><a href="questionpapers?sub=<?php echo $subject; ?>&year=<?php echo $year;?>&course=<?php echo $course;?>&class=<?php echo $class; ?>&num_pages=<?php echo $num_pages; ?>&q_id=<?php echo $q_id; ?>" target="_blank"><?php echo $subject; ?></a></td>
             <td><?php echo $year; ?></td>
             <td><?php echo $course; ?></td>
             <td><?php echo $class; ?></td>

@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['user']) || !isset($_SESSION['type']) || $_SESSION['type']!=0){
+  die("Authentication Failed. Please login!");
+}
 require "../../require/config.php";
 ?>
 <!DOCTYPE html>
@@ -9,12 +12,11 @@ require "../../require/config.php";
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Digital library</title>
-  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
-  <script src="../../bootstrap/js/bootstrap.js"></script>
-  <script src="../../bootstrap/js/jquery.min.js"></script>
-  <script src="../../bootstrap/js/bootstrap.min.js"></script>
-  <!-- <link rel="stylesheet" href="../../styles/main.css"> -->
-  <link rel="stylesheet" href="../../styles/dashboard.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <script src="bootstrap/js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="styles/dashboard.css">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script>
@@ -35,7 +37,7 @@ require "../../require/config.php";
 <body>
   <div id="header">
     <div class="logo">
-      <a href="../../index.php"><img src="../../images/logo.JPG" alt="KC logo" width="100px"></img></a>
+      <a href="index.php"><img src="images/logo.png" alt="KC logo" width="100px"></img></a>
     </div>
     <div class="brand">
       Digital Library of Kaliabor College
@@ -49,7 +51,7 @@ require "../../require/config.php";
           <a class="nav-link active" href="#home" data-toggle="tab">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../../index.php">Visit Site</a>
+          <a class="nav-link active" href="index.php">Visit Site</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#reset_pass" data-toggle="tab">Reset Pasword</a>
@@ -84,141 +86,11 @@ require "../../require/config.php";
       <div class="line"></div>
     </div>
     <div id="home" class="tab-pane active fade in">
-      <div class="dashboard">
-		<div class="boxcontainer">
-        <div class="box">
-          Ebooks<br/>
-          <div class="count">
-            <?php
-            $query = "select * from document where type= 'e'";
-            if($connect->query($query)){
-              $result=$connect->query($query);
-              $rows=mysqli_num_rows($result);
-              echo $rows;
-            } ?>
-          </div>
-
-        </div>
-        <div class="box">
-          College Publishing<br/>
-          <div class="count">
-            <?php
-            $query = "select * from document where type= 'c'";
-            if($connect->query($query)){
-              $result=$connect->query($query);
-              $rows=mysqli_num_rows($result);
-              echo $rows;
-            } ?>
-          </div>
-        </div>
-        <div class="box">
-          Local Publishing<br/>
-          <div class="count">
-            <?php
-            $query = "select * from document where type= 'l'";
-            if($connect->query($query)){
-              $result=$connect->query($query);
-              $rows=mysqli_num_rows($result);
-              echo $rows;
-            } ?>
-          </div>
-        </div>
-        <div class="box">
-          Audios<br/>
-          <div class="count">
-            <?php
-            $query = "select * from media where type= '1'";
-            if($connect->query($query)){
-              $result=$connect->query($query);
-              $rows=mysqli_num_rows($result);
-              echo $rows;
-            } ?>
-          </div>
-        </div>
-        <div class="box">
-          Videos<br/>
-          <div class="count">
-            <?php
-            $query = "select * from media where type= '0'";
-            if($connect->query($query)){
-              $result=$connect->query($query);
-              $rows=mysqli_num_rows($result);
-              echo $rows;
-            } ?>
-          </div>
-        </div>
-        <div class="box">
-          Question Papers<br/>
-          <div class="count">
-            <?php
-            $query = "select * from question_papers ";
-            if($connect->query($query)){
-              $result=$connect->query($query);
-              $rows=mysqli_num_rows($result);
-              echo $rows;
-            } ?>
-          </div>
-
-        </div>
-		</div>
-      </div>
+      <?php require_once "../../resources/dash_home.php"; ?>
     </div>
     <div id="reset_pass" class="tab-pane fade in">
       <div class="dashboard">
-        <?php
-        $admin_id = $_SESSION['user'];
-        if(isset($_POST['old']) && isset($_POST['new']) && isset($_POST['confirm']))
-        {
-          $old= htmlentities($_POST['old']);
-          $new1= htmlentities($_POST['new']);
-          $new2= htmlentities($_POST['confirm']);
-          if($new1 == $new2)
-          {
-            require_once "../../require/config.php" ;
-            $query = "select username from admin where id = '$admin_id' and password = '$old'";
-            $result = $connect->query($query);
-            if($connect->connect_error){
-            die("Operation Failed, Please try after some time.");
-            }
-            else{
-              $rows=mysqli_num_rows($result);
-              if($rows == 0){
-              echo '<div class= "alert alert-warning">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-              Authentication Failed. Please type in correct password.
-              </div>';
-              }
-              else{
-                if($old == $new1){
-                  echo '<div class= "alert alert-warning">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-                  New password cannot be same as old password. Please use another password.
-                  </div>';
-                }
-                else{
-                $query1="UPDATE admin SET password='$new1' WHERE id='$admin_id' and password = '$old'";
-                $connect->query($query1);
-                if($connect->connect_error)
-                  die("Operation failed, Please try after some time.");
-                else
-                echo '<script>
-                  alert("Password Updated Successfully.");
-                  </script>';
-                    }
-                  }
-                }
-              }
-          else{
-            echo '<script>
-            alert("Passwords don\'t match . Please try again.");
-            </script>';
-          }
-        }
-        ?>
+
           <form class="form-horizontal" action="" method="post">
             <h3>Reset Password</h3>
             <div class="group">
@@ -237,6 +109,60 @@ require "../../require/config.php";
               <button type="submit" class="submit-button">Update</button>
             </div>
           </form>
+          <?php
+          $admin_id = $_SESSION['user'];
+          if(isset($_POST['old']) && isset($_POST['new']) && isset($_POST['confirm']))
+          {
+            $old= htmlentities($_POST['old']);
+            $new1= htmlentities($_POST['new']);
+            $new2= htmlentities($_POST['confirm']);
+            if($new1 == $new2)
+            {
+              require_once "../../require/config.php";
+              $query = "select username from admin where id = '$admin_id' and password = '$old'";
+              $result = $connect->query($query);
+              if($connect->connect_error){
+              die("Operation Failed, Please try after some time.");
+              }
+              else{
+                $rows=mysqli_num_rows($result);
+                if($rows == 0){
+                echo '<div class= "alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                Authentication Failed. Please type in correct password.
+                </div>';
+                }
+                else{
+                  if($old == $new1){
+                    echo '<div class= "alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    New password cannot be same as old password. Please use another password.
+                    </div>';
+                  }
+                  else{
+                  $query1="UPDATE admin SET password='$new1' WHERE id='$admin_id' and password = '$old'";
+                  $connect->query($query1);
+                  if($connect->connect_error)
+                    die("Operation failed, Please try after some time.");
+                  else
+                  echo '<script>
+                    alert("Password Updated Successfully.");
+                    </script>';
+                      }
+                    }
+                  }
+                }
+            else{
+              echo '<script>
+              alert("Passwords don\'t match . Please try again.");
+              </script>';
+            }
+          }
+          ?>
         </div>
     </div>
     <div id="add_member" class="tab-pane fade in">
@@ -324,8 +250,8 @@ require "../../require/config.php";
               <td><?php echo $rows[1]." ".$rows[2] ?></td>
               <td rowspan="5">
                 <ul class="list-inline member_option">
-                    <li><a href="../../resources/edit_remove.inc.php?task=edit&id=<?php echo $rows[0]; ?>" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a></li><br/><br/>
-                    <li><a href="../../resources/edit_remove.inc.php?task=remove&id=<?php echo $rows[0]; ?>" type="buttton" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></li>
+                    <li><a href="resources/edit_remove.inc.php?task=edit&id=<?php echo $rows[0]; ?>" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a></li><br/><br/>
+                    <li><a href="resources/edit_remove.inc.php?task=remove&id=<?php echo $rows[0]; ?>" type="buttton" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></li>
                 </ul>
               </td>
             </tr>
@@ -365,7 +291,7 @@ require "../../require/config.php";
       </div>
       <div id="Up_doc" class="tab-pane fade in">
         <div class="dashboard">
-            <form class="form-horizontal" method="POST" action="../../resources/dashuploading.php" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="resources/dashuploading.php" enctype="multipart/form-data">
               <h3>Upload document</h3>
               <div class="container-fluid">
                 <div class="form-group">
@@ -397,7 +323,7 @@ require "../../require/config.php";
 
       <div id="media" class="tab-pane fade in">
         <div class="dashboard">
-              <form class="form-horizontal" method="POST" action="../../resources/uploading.php" enctype="multipart/form-data">
+              <form class="form-horizontal" method="POST" action="resources/uploading.php" enctype="multipart/form-data">
                 <h3>Upload Media</h3>
 				        <div class="container-fluid">
                   <div class="form-group">
@@ -453,7 +379,7 @@ require "../../require/config.php";
           <div class="modal-body">
             <h4>Do you really want to logout?</h4>
           </div>
-          <div class="modal-footer"><form action="../../require/logout.php" method="post">
+          <div class="modal-footer"><form action="require/logout.php" method="post">
             <button type="button" class="btn btn-default" data-dismiss="modal">No
             </button>
             <button id="logoutstyle" type="submit" name="logout" class="btn btn-default">
@@ -473,7 +399,7 @@ require "../../require/config.php";
 </div> -->
 
 </div>
-<script src="../../styles/javascript.js"></script>
-<script src="../../styles/jquery.js"></script>
+<script src="styles/javascript.js"></script>
+<script src="styles/jquery.js"></script>
 </body>
 </html>
