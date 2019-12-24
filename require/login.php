@@ -21,7 +21,7 @@ while($data = mysqli_fetch_row($result)){
 if($type == 0)
 	header("Location: ../principal");
 else if($type == 1)
-	header("Location: ../users/lib_member/dashboard.php");
+	header("Location: ../librarian");
 else echo "something went wrong";
 }
 else if($count == 0){

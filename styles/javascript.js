@@ -24,6 +24,7 @@ const navSlide = () => {
 
   button.addEventListener('click',() => {
     menu.classList.toggle('nav-active');
+    button.classList.toggle('btn-active');
     });
 
   for(var i=0; links.length; i++){
@@ -31,6 +32,7 @@ const navSlide = () => {
   self.addEventListener('click', () => {
     if(window.innerWidth < 768 ){
       menu.classList.toggle('nav-active');
+      button.classList.toggle('btn-active');
     }
   })
   }

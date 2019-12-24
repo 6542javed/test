@@ -74,9 +74,6 @@ require "../../require/config.php";
       <li class="nav-item">
         <a class="nav-link" href="#media" data-toggle="tab">Media</a>
       </li>
-      <!-- <li class="nav-item">
-      <a class="nav-link" href="#" data-target="#modal" data-toggle="modal">Log Out</a>
-    </li> -->
   </ul>
 </div>
   <div class="tab-content">

@@ -36,7 +36,7 @@ require_once '../require/config.php';
       ?>
     </h1>
     <!-- <span style="font-size: 2.5em;" id="underline">E-Books</span> -->
-    <form class="form-inline" action="books?s=<?php if(isset($_GET['search_term']))echo htmlentities($_GET['search_term']);?>" method="get">
+    <form class="form-inline" action="books? <?php if(isset($_GET['search_term']) && !empty($_GET['search_term'])){ echo htmlentities($_GET['search_term']); } ?>" method="get">
       <div id="ebooksBtnRow" class="row">
         <div id="search" class="input-group">
         <input type="text" class="form-control"  style="z-index:auto;" id="exampleInputName2" name="search_term" placeholder="Search for...">
