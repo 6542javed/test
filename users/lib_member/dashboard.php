@@ -19,6 +19,20 @@ require "../../require/config.php";
   <link rel="stylesheet" href="styles/dashboard.css">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script> // in order to lock the current tab
+    $(document).ready(function() {
+        if (location.hash) {
+            $("a[href='" + location.hash + "']").tab("show");
+        }
+        $(document.body).on("click", "a[data-toggle='tab']", function(event) {
+            location.hash = this.getAttribute("href");
+        });
+    });
+    $(window).on("popstate", function() {
+        var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+        $("a[href='" + anchor + "']").tab("show");
+    });
+  </script>
   <script type="text/javascript">
   var count_qImages = 5;
 
@@ -41,6 +55,16 @@ require "../../require/config.php";
   }
   else{
     window.alert("Already too many pages.");
+  }
+}
+
+function remove(file_div_qPaper){
+  var file_div_qPaper = document.getElementById(file_div_qPaper);
+  if(count_qImages!=1){
+    file_div_qPaper.removeChild(file_div_qPaper.lastElementChild);
+    count_qImages--;
+  }else{
+    window.alert("Warning! Only one remaining.");
   }
 }
 
@@ -242,10 +266,10 @@ require "../../require/config.php";
                   </div>
                   <div class="upload_paper div-hidden" id="papers">
                     <h1>Insert Images</h1>
+                    <div class="container-fluid">
+                      <p class="alert alert-info">note: Please Upload the Pages Sequentially.</p>
+                    </div>
                     <div id="file_div_qPaper" class="form-group">
-                      <div class="container-fluid">
-                        <p class="alert alert-info">note: Please Upload the Pages Sequentially. No multi-page photo allowed.</p>
-                      </div>
                       <div class="files">
                         <label for="qPaper_1">Page 1</label>
                       <input type="file" id="qPaper_1" name="qPaper_1" required></input>
@@ -268,9 +292,10 @@ require "../../require/config.php";
                       </div>
                     </div>
                     <div class="button">
-                      <button class="add-more-btn prev" type="button" name="add_more_btn" onclick="back('file_div_qPaper');"><span class="glyphicon glyphicon-chevron-left"></span>Previous</button>
-                      <button class="add-more-btn" type="button" name="add_more_btn" onclick="addMore('file_div_qPaper');">Add More Images</button>
-                      <button class="add-more-btn reset" type="button" onclick="reset('file_div_qPaper');" name="add_more_btn">Reset</button>
+                      <button class="add-more-btn prev" type="button" name="previous_btn" onclick="back('file_div_qPaper');"><span class="glyphicon glyphicon-chevron-left"></span>Previous</button>
+                      <button class="add-more-btn" type="button" name="add_more_btn" onclick="addMore('file_div_qPaper');">Add</button>
+                      <button class="add-more-btn remove" type="button" name="remove_btn" onclick="remove('file_div_qPaper');">Remove</button>
+                      <button class="add-more-btn reset" type="button" onclick="reset('file_div_qPaper');" name="reset_btn">Reset</button>
                       <button class="add-more-btn submit right" type="submit" name="submit-upload-page-btn">UPLOAD</button>
                     </div>
                   </div>

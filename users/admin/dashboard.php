@@ -88,6 +88,73 @@ require "../../require/config.php";
     <div id="reset_pass" class="tab-pane fade in">
       <div class="dashboard">
 
+
+          <?php
+          $admin_id = $_SESSION['user'];
+          if(isset($_POST['old']) && isset($_POST['new']) && isset($_POST['confirm']))
+          {
+            $old= htmlentities($_POST['old']);
+            $new1= htmlentities($_POST['new']);
+            $new2= htmlentities($_POST['confirm']);
+            if($new1 == $new2)
+            {
+              require_once "../../require/config.php";
+              $query = "select password from admin where id = '$admin_id'";
+              $result = $connect->query($query);
+              if($connect->connect_error){
+              die("Operation Failed, Please try after some time.");
+              }
+              else{
+                while($data = mysqli_fetch_row($result)){
+                  $pass_hashed = $data[0];
+                }
+                $passIsCorrect = password_verify($old, $pass_hashed);
+                $rows=mysqli_num_rows($result);
+                if (!$passIsCorrect){
+                echo '<div class= "alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                Authentication Failed. Please type in correct password.
+                </div>';
+                }
+                else{
+                  if($old == $new1){
+                    echo '<div class= "alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    New password cannot be same as old password. Please use another password.
+                    </div>';
+                  }
+                  else{
+                  $new1_hashed = password_hash($new1, PASSWORD_DEFAULT);
+                  $query1="UPDATE admin SET password='$new1_hashed' WHERE id='$admin_id' and password = '$pass_hashed'";
+                  $connect->query($query1);
+                  if($connect->connect_error)
+                    die("Operation failed, Please try after some time.");
+                  else
+                  echo '<div class= "alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                  Password Updated Successfully.
+                  </div>';
+                      }
+                    }
+                  }
+                }
+            else{
+              echo '<div class= "alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              Passwords don\'t match. Please try again!
+              </div>';
+            }
+          }
+          ?>
+
           <form class="form-horizontal" action="" method="post">
             <h3>Reset Password</h3>
             <div class="group">
@@ -106,60 +173,6 @@ require "../../require/config.php";
               <button type="submit" class="submit-button">Update</button>
             </div>
           </form>
-          <?php
-          $admin_id = $_SESSION['user'];
-          if(isset($_POST['old']) && isset($_POST['new']) && isset($_POST['confirm']))
-          {
-            $old= htmlentities($_POST['old']);
-            $new1= htmlentities($_POST['new']);
-            $new2= htmlentities($_POST['confirm']);
-            if($new1 == $new2)
-            {
-              require_once "../../require/config.php";
-              $query = "select username from admin where id = '$admin_id' and password = '$old'";
-              $result = $connect->query($query);
-              if($connect->connect_error){
-              die("Operation Failed, Please try after some time.");
-              }
-              else{
-                $rows=mysqli_num_rows($result);
-                if($rows == 0){
-                echo '<div class= "alert alert-warning">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                Authentication Failed. Please type in correct password.
-                </div>';
-                }
-                else{
-                  if($old == $new1){
-                    echo '<div class= "alert alert-warning">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    New password cannot be same as old password. Please use another password.
-                    </div>';
-                  }
-                  else{
-                  $query1="UPDATE admin SET password='$new1' WHERE id='$admin_id' and password = '$old'";
-                  $connect->query($query1);
-                  if($connect->connect_error)
-                    die("Operation failed, Please try after some time.");
-                  else
-                  echo '<script>
-                    alert("Password Updated Successfully.");
-                    </script>';
-                      }
-                    }
-                  }
-                }
-            else{
-              echo '<script>
-              alert("Passwords don\'t match . Please try again.");
-              </script>';
-            }
-          }
-          ?>
         </div>
     </div>
     <div id="add_member" class="tab-pane fade in">
@@ -174,9 +187,10 @@ require "../../require/config.php";
             $addr = htmlentities($_POST['address']);
             $user_id = htmlentities($_POST['user_id']);
             $pass = htmlentities($_POST['password']);
+            $pass_hashed = password_hash($pass, PASSWORD_DEFAULT);
             require_once "../../require/config.php";
             $register = "insert into lib_member(first_name, last_name, contact_no, address, username, password)
-            values('$fname', '$lname', '$addr', '$contact', '$user_id', '$pass')";
+            values('$fname', '$lname', '$contact', '$addr', '$user_id', '$pass_hashed')";
             if($connect->query($register))
             {
               echo '<script>
@@ -187,6 +201,7 @@ require "../../require/config.php";
               echo '<script>
               alert("Error: Registration Failed. Please try again.");
               </script>';
+              // echo "Error: " .$query. "<br>" . $connect->error;
             }
 
           }
@@ -236,7 +251,7 @@ require "../../require/config.php";
       if($rows!=0){
         ?>
         <div class="table-responsive">
-        <table class="table table-striped table-bordered">
+        <table class="table table-bordered">
         <?php
           while($rows=mysqli_fetch_row($result))
           {
@@ -247,25 +262,25 @@ require "../../require/config.php";
               <td><?php echo $rows[1]." ".$rows[2] ?></td>
               <td rowspan="5">
                 <ul class="list-inline member_option">
-                    <li><a href="resources/edit_remove.inc.php?task=edit&id=<?php echo $rows[0]; ?>" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a></li><br/><br/>
+                    <li><a href="memberOptions?task=edit&id=<?php echo $rows[0]; ?>" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a></li><br/><br/>
                     <li><a href="resources/edit_remove.inc.php?task=remove&id=<?php echo $rows[0]; ?>" type="buttton" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></li>
                 </ul>
               </td>
             </tr>
             <tr>
-              <td></td>
+              <td>Contact No</td>
               <td><?php echo $rows[3]; ?></td>
             </tr>
             <tr>
-              <td></td>
+              <td>Address</td>
               <td><?php echo $rows[4]; ?></td>
             </tr>
             <tr>
-              <td></td>
+              <td>Uer ID</td>
               <td><?php echo $rows[5]; ?></td>
             </tr>
             <tr>
-              <td></td>
+              <td>Password</td>
               <td><?php echo $rows[6]; ?></td>
             </tr>
             <?php

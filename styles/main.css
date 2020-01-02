@@ -19,6 +19,7 @@ h1{
   font-weight: bold;
   /* color: rgb(255, 223, 6); */
   font-family: serif;
+  box-shadow: 0 1px 30px  black;
 }
 @media screen and (max-width: 768px){
 #header{

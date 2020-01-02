@@ -8,6 +8,7 @@
   text-transform: uppercase;
   font-weight: bold;
   font-family: serif;
+  box-shadow: 0 1px 30px  black;
 
   z-index: 1;
   position: fixed;
@@ -358,6 +359,10 @@ border: 1px solid black;
 .prev{
   background-color: rgb(10, 154, 85);
   margin-right: 10px;
+}
+.add-more-btn + .remove{
+  color: red;
+  background: cyan;
   margin-left: 10px;
 }
 .add-more-btn + .reset{

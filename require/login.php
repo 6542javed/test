@@ -8,24 +8,29 @@ if($type == 0)
   $table = 'admin';
 else if($type == 1)
   $table = 'lib_member';
-$query = "select id from $table where username = '$username' and password = '$password'";
+$query = "select id, password from $table where username = '$username'";
 if($result= $connect->query($query)){
 $count=mysqli_num_rows($result);
 if( $count == 1){
   session_start();
-while($data = mysqli_fetch_row($result)){
-  $_SESSION['user'] = $data[0];
-  $_SESSION['type'] = $type;
-  $_SESSION['table'] = $table;
+while($data = mysqli_fetch_row($result))
+{
+    $pass_hashed = $data[1];
+    $isCorrect = password_verify($password, $pass_hashed);
+    if($isCorrect){
+      $_SESSION['user'] = $data[0];
+      $_SESSION['type'] = $type;
+      $_SESSION['table'] = $table;
+    }
 }
 if($type == 0)
 	header("Location: ../principal");
 else if($type == 1)
 	header("Location: ../librarian");
-else echo "something went wrong";
+else echo "Something went wrong";
 }
 else if($count == 0){
-echo 'Either your username or password is incorrect';
+echo 'Incorrect Username entered. Try again!. <br/> Go Back to <a href="../"> Homepage</a> .';
 }
 }
 else{
